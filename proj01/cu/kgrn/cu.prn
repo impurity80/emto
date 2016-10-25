@@ -1,4 +1,4 @@
- TASK:     Self-consistent KKR calculation for fcc Cu        11:15 / 05-Sep-16  
+ TASK:     Self-consistent KKR calculation for fcc Cu        20:58 / 30-Sep-16  
 
  FHNDLR:   Program: KGRN, Version: LV 24 Oct 2013 
 
@@ -17,15 +17,15 @@
        EMTO versio: not available
  current branch on: not available
    commit hash key: not available
-        compile on: Tue Aug 30 16:10:58 KST 2016
-           OS info: Linux 4.4.0-34-generic x86_64 GNU/Linux
+        compile on: Thu Sep 29 20:39:06 KST 2016
+           OS info: Linux 4.4.0-38-generic x86_64 GNU/Linux
           CPU-info: Intel(R) Xeon(R) CPU E5-2683 v4 @ 2.10GHz
      compiler-info: ifort (IFORT) 14.0.3 20140422
    BLAS and LAPACK: mkl
 
  TRNSFM:   Single Taylor expansion for the slope matrix
 
-           Slope matrices, fcc (spdf), (kappa*w)^2= 0.0              05-Sep-16  
+           Slope matrices, fcc (spdf), (kappa*w)^2= 0.0              30-Sep-16  
 
            ITRANS =  3 (kappa0*w)^2 =   0.000 NDER =  6
 
@@ -64,7 +64,7 @@
            sigc  C32+  C33-  C2a   S63-  S64+  C4x-  C4y+
 
 
- MADMTR:   Madelung potential for fcc bulk                           05-Sep-16  
+ MADMTR:   Madelung potential for fcc bulk                           30-Sep-16  
 
            NLMAD  =  49
 
@@ -225,7 +225,7 @@
   6  1  -0.00  1.8672  1.4399  0.3133  0.0828  0.0229  0.0064  0.0018
 
  Atom:Cu              S =    2.686842        SWS =    2.686842
- Exch:P-W                              Date : 05-Sep-16
+ Exch:P-W                              Date : 30-Sep-16
 
  Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2
 
@@ -285,7 +285,7 @@
   IQ    s      y      z      x      xy     yz   3zz-1    xz   xx-yy  3xx y
   xyz   5zz y  5zz z  5zz x  xx  z  3yy x
  
-   1 10.8027-0.0000 0.0000-0.0000 0.0000-0.0000-0.0000-0.0000-0.0000-0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
+   1 10.8027-0.0000 0.0000-0.0000 0.0000-0.0000-0.0000-0.0000-0.0000 0.0000 0.0000-0.0000 0.0000 0.0000 0.0000 0.0000
  Tot 10.8027
 
  MLTPM:    Non vanishing higher moments for IQ =  1
@@ -307,14 +307,14 @@
 
  KGRN:  QSCA = -0.031195
 
- Potential parameters, charge densities, and potential stored on:    05-Sep-16
+ Potential parameters, charge densities, and potential stored on:    30-Sep-16
 
  MLTPM:    Multipole moments
 
   IQ    s      y      z      x      xy     yz   3zz-1    xz   xx-yy  3xx y
   xyz   5zz y  5zz z  5zz x  xx  z  3yy x
  
-   1 13.0949 0.0000-0.0000 0.0000 0.0000-0.0000-0.0000-0.0000-0.0000 0.0000-0.0000 0.0000-0.0000 0.0000-0.0000-0.0000
+   1 13.0949-0.0000-0.0000 0.0000-0.0000-0.0000-0.0000-0.0000 0.0000-0.0000-0.0000 0.0000-0.0000 0.0000-0.0000 0.0000
  Tot 13.0949
 
  MLTPM:    Non vanishing higher moments for IQ =  1
@@ -336,14 +336,14 @@
 
  KGRN:  QSCA =  0.049245
 
- Potential parameters, charge densities, and potential stored on:    05-Sep-16
+ Potential parameters, charge densities, and potential stored on:    30-Sep-16
 
  MLTPM:    Multipole moments
 
   IQ    s      y      z      x      xy     yz   3zz-1    xz   xx-yy  3xx y
   xyz   5zz y  5zz z  5zz x  xx  z  3yy x
  
-   1 11.0243 0.0000-0.0000 0.0000-0.0000-0.0000-0.0000-0.0000 0.0000-0.0000 0.0000-0.0000 0.0000 0.0000 0.0000 0.0000
+   1 11.0243-0.0000 0.0000 0.0000 0.0000-0.0000-0.0000-0.0000-0.0000 0.0000-0.0000-0.0000-0.0000 0.0000-0.0000-0.0000
  Tot 11.0243
 
  MLTPM:    Non vanishing higher moments for IQ =  1
@@ -365,14 +365,14 @@
 
  KGRN:  QSCA =  0.039417
 
- Potential parameters, charge densities, and potential stored on:    05-Sep-16
+ Potential parameters, charge densities, and potential stored on:    30-Sep-16
 
  MLTPM:    Multipole moments
 
   IQ    s      y      z      x      xy     yz   3zz-1    xz   xx-yy  3xx y
   xyz   5zz y  5zz z  5zz x  xx  z  3yy x
  
-   1 11.0191-0.0000 0.0000 0.0000 0.0000-0.0000-0.0000-0.0000 0.0000-0.0000-0.0000 0.0000-0.0000-0.0000-0.0000 0.0000
+   1 11.0191 0.0000 0.0000 0.0000 0.0000-0.0000-0.0000-0.0000-0.0000 0.0000 0.0000-0.0000 0.0000 0.0000 0.0000 0.0000
  Tot 11.0191
 
  MLTPM:    Non vanishing higher moments for IQ =  1
@@ -394,14 +394,14 @@
 
  KGRN:  QSCA =  0.037072
 
- Potential parameters, charge densities, and potential stored on:    05-Sep-16
+ Potential parameters, charge densities, and potential stored on:    30-Sep-16
 
  MLTPM:    Multipole moments
 
   IQ    s      y      z      x      xy     yz   3zz-1    xz   xx-yy  3xx y
   xyz   5zz y  5zz z  5zz x  xx  z  3yy x
  
-   1 11.0179 0.0000-0.0000 0.0000 0.0000-0.0000-0.0000-0.0000-0.0000 0.0000 0.0000 0.0000 0.0000-0.0000 0.0000-0.0000
+   1 11.0179-0.0000 0.0000-0.0000-0.0000-0.0000-0.0000-0.0000-0.0000-0.0000-0.0000 0.0000-0.0000-0.0000-0.0000-0.0000
  Tot 11.0179
 
  MLTPM:    Non vanishing higher moments for IQ =  1
@@ -423,14 +423,14 @@
 
  KGRN:  QSCA =  0.036375
 
- Potential parameters, charge densities, and potential stored on:    05-Sep-16
+ Potential parameters, charge densities, and potential stored on:    30-Sep-16
 
  MLTPM:    Multipole moments
 
   IQ    s      y      z      x      xy     yz   3zz-1    xz   xx-yy  3xx y
   xyz   5zz y  5zz z  5zz x  xx  z  3yy x
  
-   1 11.0178 0.0000 0.0000-0.0000 0.0000-0.0000-0.0000-0.0000-0.0000-0.0000-0.0000-0.0000-0.0000 0.0000-0.0000 0.0000
+   1 11.0178 0.0000 0.0000-0.0000 0.0000-0.0000-0.0000-0.0000-0.0000-0.0000 0.0000 0.0000 0.0000-0.0000 0.0000 0.0000
  Tot 11.0178
 
  MLTPM:    Non vanishing higher moments for IQ =  1
@@ -452,14 +452,14 @@
 
  KGRN:  QSCA =  0.036453
 
- Potential parameters, charge densities, and potential stored on:    05-Sep-16
+ Potential parameters, charge densities, and potential stored on:    30-Sep-16
 
  MLTPM:    Multipole moments
 
   IQ    s      y      z      x      xy     yz   3zz-1    xz   xx-yy  3xx y
   xyz   5zz y  5zz z  5zz x  xx  z  3yy x
  
-   1 11.0176 0.0000-0.0000 0.0000-0.0000-0.0000-0.0000-0.0000 0.0000-0.0000 0.0000-0.0000 0.0000 0.0000 0.0000 0.0000
+   1 11.0176 0.0000 0.0000 0.0000 0.0000-0.0000-0.0000-0.0000-0.0000 0.0000 0.0000 0.0000 0.0000 0.0000-0.0000-0.0000
  Tot 11.0176
 
  MLTPM:    Non vanishing higher moments for IQ =  1
@@ -481,14 +481,14 @@
 
  KGRN:  QSCA =  0.036320
 
- Potential parameters, charge densities, and potential stored on:    05-Sep-16
+ Potential parameters, charge densities, and potential stored on:    30-Sep-16
 
  MLTPM:    Multipole moments
 
   IQ    s      y      z      x      xy     yz   3zz-1    xz   xx-yy  3xx y
   xyz   5zz y  5zz z  5zz x  xx  z  3yy x
  
-   1 11.0176-0.0000 0.0000 0.0000-0.0000-0.0000-0.0000-0.0000-0.0000 0.0000 0.0000-0.0000-0.0000 0.0000-0.0000-0.0000
+   1 11.0176 0.0000-0.0000-0.0000-0.0000-0.0000-0.0000-0.0000-0.0000 0.0000 0.0000-0.0000 0.0000 0.0000-0.0000-0.0000
  Tot 11.0176
 
  MLTPM:    Non vanishing higher moments for IQ =  1
@@ -510,14 +510,14 @@
 
  KGRN:  QSCA =  0.036396
 
- Potential parameters, charge densities, and potential stored on:    05-Sep-16
+ Potential parameters, charge densities, and potential stored on:    30-Sep-16
 
  MLTPM:    Multipole moments
 
   IQ    s      y      z      x      xy     yz   3zz-1    xz   xx-yy  3xx y
   xyz   5zz y  5zz z  5zz x  xx  z  3yy x
  
-   1 11.0172 0.0000-0.0000 0.0000-0.0000-0.0000-0.0000-0.0000-0.0000 0.0000 0.0000 0.0000 0.0000-0.0000-0.0000-0.0000
+   1 11.0172 0.0000-0.0000 0.0000 0.0000-0.0000-0.0000-0.0000-0.0000 0.0000-0.0000-0.0000 0.0000-0.0000-0.0000 0.0000
  Tot 11.0172
 
  MLTPM:    Non vanishing higher moments for IQ =  1
@@ -539,14 +539,14 @@
 
  KGRN:  QSCA =  0.036529
 
- Potential parameters, charge densities, and potential stored on:    05-Sep-16
+ Potential parameters, charge densities, and potential stored on:    30-Sep-16
 
  MLTPM:    Multipole moments
 
   IQ    s      y      z      x      xy     yz   3zz-1    xz   xx-yy  3xx y
   xyz   5zz y  5zz z  5zz x  xx  z  3yy x
  
-   1 11.0173 0.0000-0.0000-0.0000 0.0000-0.0000-0.0000-0.0000-0.0000 0.0000 0.0000-0.0000 0.0000 0.0000-0.0000-0.0000
+   1 11.0173-0.0000 0.0000-0.0000-0.0000-0.0000-0.0000-0.0000-0.0000-0.0000 0.0000 0.0000-0.0000-0.0000 0.0000 0.0000
  Tot 11.0173
 
  MLTPM:    Non vanishing higher moments for IQ =  1
@@ -568,14 +568,14 @@
 
  KGRN:  QSCA =  0.036589
 
- Potential parameters, charge densities, and potential stored on:    05-Sep-16
+ Potential parameters, charge densities, and potential stored on:    30-Sep-16
 
  MLTPM:    Multipole moments
 
   IQ    s      y      z      x      xy     yz   3zz-1    xz   xx-yy  3xx y
   xyz   5zz y  5zz z  5zz x  xx  z  3yy x
  
-   1 11.0173-0.0000-0.0000-0.0000-0.0000-0.0000-0.0000-0.0000-0.0000 0.0000 0.0000 0.0000-0.0000-0.0000-0.0000-0.0000
+   1 11.0173-0.0000-0.0000 0.0000-0.0000-0.0000-0.0000-0.0000-0.0000 0.0000 0.0000 0.0000 0.0000 0.0000-0.0000-0.0000
  Tot 11.0173
 
  MLTPM:    Non vanishing higher moments for IQ =  1
@@ -597,14 +597,14 @@
 
  KGRN:  QSCA =  0.036577
 
- Potential parameters, charge densities, and potential stored on:    05-Sep-16
+ Potential parameters, charge densities, and potential stored on:    30-Sep-16
 
  MLTPM:    Multipole moments
 
   IQ    s      y      z      x      xy     yz   3zz-1    xz   xx-yy  3xx y
   xyz   5zz y  5zz z  5zz x  xx  z  3yy x
  
-   1 11.0173-0.0000 0.0000 0.0000 0.0000-0.0000-0.0000-0.0000-0.0000 0.0000 0.0000-0.0000-0.0000 0.0000-0.0000-0.0000
+   1 11.0173-0.0000-0.0000 0.0000-0.0000-0.0000-0.0000-0.0000-0.0000-0.0000-0.0000 0.0000-0.0000-0.0000-0.0000-0.0000
  Tot 11.0173
 
  MLTPM:    Non vanishing higher moments for IQ =  1
@@ -626,14 +626,14 @@
 
  KGRN:  QSCA =  0.036576
 
- Potential parameters, charge densities, and potential stored on:    05-Sep-16
+ Potential parameters, charge densities, and potential stored on:    30-Sep-16
 
  MLTPM:    Multipole moments
 
   IQ    s      y      z      x      xy     yz   3zz-1    xz   xx-yy  3xx y
   xyz   5zz y  5zz z  5zz x  xx  z  3yy x
  
-   1 11.0173 0.0000 0.0000-0.0000 0.0000-0.0000-0.0000-0.0000 0.0000 0.0000 0.0000-0.0000-0.0000 0.0000-0.0000-0.0000
+   1 11.0173-0.0000-0.0000-0.0000 0.0000-0.0000-0.0000-0.0000-0.0000-0.0000 0.0000 0.0000-0.0000 0.0000-0.0000-0.0000
  Tot 11.0173
 
  MLTPM:    Non vanishing higher moments for IQ =  1
@@ -649,18 +649,18 @@
 
  KGRN:  Iteration no.  13 Etot =     -102.858553 erren = 0.00000134
 
-        Dyson loops    28 EF   =       -0.092499 erref = 0.00000015
+        Dyson loops    30 EF   =       -0.092499 erref = 0.00000015
 
  KGRN:  QSCA =  0.036576
 
- Potential parameters, charge densities, and potential stored on:    05-Sep-16
+ Potential parameters, charge densities, and potential stored on:    30-Sep-16
 
  MLTPM:    Multipole moments
 
   IQ    s      y      z      x      xy     yz   3zz-1    xz   xx-yy  3xx y
   xyz   5zz y  5zz z  5zz x  xx  z  3yy x
  
-   1 11.0173-0.0000-0.0000 0.0000-0.0000-0.0000-0.0000-0.0000-0.0000-0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
+   1 11.0173-0.0000-0.0000-0.0000-0.0000-0.0000-0.0000-0.0000 0.0000 0.0000 0.0000-0.0000 0.0000-0.0000-0.0000 0.0000
  Tot 11.0173
 
  MLTPM:    Non vanishing higher moments for IQ =  1
@@ -676,18 +676,18 @@
 
  KGRN:  Iteration no.  14 Etot =     -102.858553 erren = 0.00000025
 
-        Dyson loops    28 EF   =       -0.092497 erref = 0.00000142
+        Dyson loops    25 EF   =       -0.092497 erref = 0.00000142
 
  KGRN:  QSCA =  0.036577
 
- Potential parameters, charge densities, and potential stored on:    05-Sep-16
+ Potential parameters, charge densities, and potential stored on:    30-Sep-16
 
  MLTPM:    Multipole moments
 
   IQ    s      y      z      x      xy     yz   3zz-1    xz   xx-yy  3xx y
   xyz   5zz y  5zz z  5zz x  xx  z  3yy x
  
-   1 11.0173-0.0000 0.0000-0.0000 0.0000-0.0000-0.0000-0.0000-0.0000-0.0000-0.0000 0.0000-0.0000-0.0000 0.0000-0.0000
+   1 11.0173 0.0000 0.0000-0.0000-0.0000-0.0000-0.0000-0.0000 0.0000 0.0000 0.0000 0.0000 0.0000-0.0000 0.0000 0.0000
  Tot 11.0173
 
  MLTPM:    Non vanishing higher moments for IQ =  1
@@ -703,18 +703,18 @@
 
  KGRN:  Iteration no.  15 Etot =     -102.858553 erren = 0.00000008
 
-        Dyson loops    29 EF   =       -0.092497 erref = 0.00000012
+        Dyson loops    24 EF   =       -0.092497 erref = 0.00000012
 
  KGRN:  QSCA =  0.036576
 
- Potential parameters, charge densities, and potential stored on:    05-Sep-16
+ Potential parameters, charge densities, and potential stored on:    30-Sep-16
 
  MLTPM:    Multipole moments
 
   IQ    s      y      z      x      xy     yz   3zz-1    xz   xx-yy  3xx y
   xyz   5zz y  5zz z  5zz x  xx  z  3yy x
  
-   1 11.0173 0.0000-0.0000 0.0000 0.0000-0.0000-0.0000-0.0000-0.0000-0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
+   1 11.0173 0.0000 0.0000 0.0000-0.0000-0.0000-0.0000-0.0000 0.0000 0.0000-0.0000-0.0000-0.0000-0.0000-0.0000-0.0000
  Tot 11.0173
 
  MLTPM:    Non vanishing higher moments for IQ =  1
@@ -730,18 +730,18 @@
 
  KGRN:  Iteration no.  16 Etot =     -102.858553 erren = 0.00000000
 
-        Dyson loops    18 EF   =       -0.092498 erref = 0.00000037
+        Dyson loops    16 EF   =       -0.092498 erref = 0.00000037
 
  KGRN:  QSCA =  0.036576
 
- Potential parameters, charge densities, and potential stored on:    05-Sep-16
+ Potential parameters, charge densities, and potential stored on:    30-Sep-16
 
  MLTPM:    Multipole moments
 
   IQ    s      y      z      x      xy     yz   3zz-1    xz   xx-yy  3xx y
   xyz   5zz y  5zz z  5zz x  xx  z  3yy x
  
-   1 11.0173-0.0000 0.0000 0.0000-0.0000-0.0000-0.0000-0.0000-0.0000 0.0000 0.0000-0.0000 0.0000 0.0000 0.0000 0.0000
+   1 11.0173 0.0000-0.0000 0.0000 0.0000-0.0000-0.0000-0.0000-0.0000-0.0000-0.0000-0.0000-0.0000 0.0000 0.0000-0.0000
  Tot 11.0173
 
  MLTPM:    Non vanishing higher moments for IQ =  1
@@ -757,18 +757,18 @@
 
  KGRN:  Iteration no.  17 Etot =     -102.858553 erren = 0.00000001
 
-        Dyson loops    22 EF   =       -0.092498 erref = 0.00000028
+        Dyson loops    20 EF   =       -0.092498 erref = 0.00000028
 
  KGRN:  QSCA =  0.036576
 
- Potential parameters, charge densities, and potential stored on:    05-Sep-16
+ Potential parameters, charge densities, and potential stored on:    30-Sep-16
 
  MLTPM:    Multipole moments
 
   IQ    s      y      z      x      xy     yz   3zz-1    xz   xx-yy  3xx y
   xyz   5zz y  5zz z  5zz x  xx  z  3yy x
  
-   1 11.0173-0.0000-0.0000 0.0000-0.0000-0.0000-0.0000-0.0000 0.0000-0.0000 0.0000-0.0000 0.0000-0.0000 0.0000-0.0000
+   1 11.0173 0.0000 0.0000 0.0000-0.0000-0.0000-0.0000-0.0000-0.0000-0.0000 0.0000-0.0000-0.0000 0.0000 0.0000-0.0000
  Tot 11.0173
 
  MLTPM:    Non vanishing higher moments for IQ =  1
@@ -784,18 +784,18 @@
 
  KGRN:  Iteration no.  18 Etot =     -102.858553 erren = 0.00000001
 
-        Dyson loops    18 EF   =       -0.092498 erref = 0.00000011
+        Dyson loops    20 EF   =       -0.092498 erref = 0.00000011
 
  KGRN:  QSCA =  0.036576
 
- Potential parameters, charge densities, and potential stored on:    05-Sep-16
+ Potential parameters, charge densities, and potential stored on:    30-Sep-16
 
  MLTPM:    Multipole moments
 
   IQ    s      y      z      x      xy     yz   3zz-1    xz   xx-yy  3xx y
   xyz   5zz y  5zz z  5zz x  xx  z  3yy x
  
-   1 11.0173 0.0000 0.0000 0.0000-0.0000-0.0000-0.0000-0.0000-0.0000 0.0000 0.0000 0.0000-0.0000-0.0000 0.0000-0.0000
+   1 11.0173-0.0000-0.0000 0.0000 0.0000-0.0000-0.0000-0.0000 0.0000-0.0000 0.0000 0.0000 0.0000-0.0000 0.0000-0.0000
  Tot 11.0173
 
  MLTPM:    Non vanishing higher moments for IQ =  1
@@ -811,11 +811,11 @@
 
  KGRN:  Iteration no.  19 Etot =     -102.858553 erren = 0.00000001
 
-        Dyson loops    19 EF   =       -0.092498 erref = 0.00000002
+        Dyson loops    20 EF   =       -0.092498 erref = 0.00000002
 
  KGRN:  QSCA =  0.036576
 
- Potential parameters, charge densities, and potential stored on:    05-Sep-16
+ Potential parameters, charge densities, and potential stored on:    30-Sep-16
 
  EBTOP:      Bot       Top
 
@@ -881,7 +881,7 @@
             5  -0.090500 -0.001503
 
  Atom:Cu              S =    2.686842        SWS =    2.686842
- Exch:P-W                              Date : 05-Sep-16
+ Exch:P-W                              Date : 30-Sep-16
 
  Panel	    =  1   s -1/2      p -1/2      d -1/2      f -1/2
 
@@ -917,7 +917,7 @@
  Dos(Ef)    =    0.473145    1.312445    1.549698    0.019839    3.355127
  Hopfield   =    0.013667 (Ry/Bohr^2),     0.664055 (eV/AA^2)
 
- PRNPRM:   EONE =     -3.441273 VINT =   -190.597678 EKIN =    187.156405
+ PRNPRM:   EONE =     -3.441273 VINT =   -190.597677 EKIN =    187.156405
            ECOR =    454.400682 ENUC =   -821.260286 EMADL=      0.000012
            EVAL =    101.541825 EXCT =   -130.020891 EXCC =   -105.323700
            ETOT =   -102.858553 OKAE =      0.000000 E[n] =   -102.858553
@@ -939,9 +939,9 @@
 
 result   2.686842   -102.858553 -0.621973 -0.092498 -0.714471
 
- Converged in 20 iterations at 11:16  05-Sep-16
+ Converged in 20 iterations at 20:58  30-Sep-16
 
- Potential parameters, charge densities, and potential stored on:    05-Sep-16
+ Potential parameters, charge densities, and potential stored on:    30-Sep-16
 
  Calculation of the full charge density, lmaxh =  8
 
@@ -960,7 +960,7 @@ result   2.686842   -102.858553 -0.621973 -0.092498 -0.714471
   IQ    s      y      z      x      xy     yz   3zz-1    xz   xx-yy  3xx y
   xyz   5zz y  5zz z  5zz x  xx  z  3yy x
  
-   1 11.0477 0.0000 0.0000 0.0000-0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000-0.0000-0.0000-0.0000 0.0000
+   1 11.0477-0.0000 0.0000 0.0000-0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000-0.0000-0.0000 0.0000-0.0000-0.0000
  Tot 11.0477
 
  ELDENS:   Non vanishing higher moments for IQ =  1 ITA = 1
@@ -990,7 +990,7 @@ result   2.686842   -102.858553 -0.621973 -0.092498 -0.714471
   IQ    s      y      z      x      xy     yz   3zz-1    xz   xx-yy  3xx y
   xyz   5zz y  5zz z  5zz x  xx  z  3yy x
  
-   1 11.0366 0.0000-0.0000 0.0000 0.0000-0.0000-0.0000-0.0000 0.0000-0.0000 0.0000 0.0000-0.0000-0.0000-0.0000 0.0000
+   1 11.0366-0.0000 0.0000-0.0000-0.0000-0.0000 0.0000-0.0000 0.0000 0.0000-0.0000 0.0000 0.0000 0.0000-0.0000 0.0000
  Tot 11.0366
 
  ELDENS:   Non vanishing higher moments for IQ =  1 ITA = 1
@@ -1000,6 +1000,6 @@ result   2.686842   -102.858553 -0.621973 -0.092498 -0.714471
             43  0.000027
             47 -0.000071
 
- Full charge density stored on:05-Sep-16
+ Full charge density stored on:30-Sep-16
 
- KGRN calculation finished at 11:16 on 05-Sep-16
+ KGRN calculation finished at 20:58 on 30-Sep-16

@@ -2,7 +2,7 @@ KGRN                                               13 Oct 12
 JOBNAM=cu 
 STRT..=  A MSGL.=  0 EXPAN.= S FCD..=  Y FUNC..= SCA
 FOR001=../kstr/smx/fcc.tfh
-FOR001=../kstr/smx/fcc30.tfh
+FOR001=../kstr/smx/fcc.tfh
 DIR002=pot/
 DIR003=pot/
 FOR004=../bmdl/mdl/fcc.mdl
