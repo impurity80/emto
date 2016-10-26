@@ -23,13 +23,20 @@ class Alloy():
         self.split = split
 
 element_keys = [
-    'Ti','V','Cr','Mn','Fe','Co','Ni','Cu','Zn', # 3d transition metal level
+    'Al', # 2d metal
+    'Ti','V','Cr','Mn','Fe','Co','Ni','Cu','Zn', # 3d transition metal
+    'Y', # 4d transition metal
 ]
 
 elements = {}
 for key in element_keys:
     elements[key] = None
 
+elements['Al'] =  'Iz=  13 Norb=  7 Ion=  0 Config= 3s2_3p1\n' \
+                  'n      1  2  2  2  3  3  3\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2\n' \
+                  'Occup  2  2  2  4  2  0  1\n' \
+                  'Valen  0  0  0  0  1  1  1\n'
 elements['Ti'] =  'Iz=  22 Norb= 10 Ion=  0 Config= 3d2_4s2\n' \
                   'n      1  2  2  2  3  3  3  3  3  4\n' \
                   'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1\n' \
@@ -75,9 +82,25 @@ elements['Zn'] =  'Iz=  30 Norb= 10 Ion=  0 Config= 3d10_4s2\n' \
                   'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1\n' \
                   'Occup  2  2  2  4  2  2  4  4  6  2\n' \
                   'Valen  0  0  0  0  0  0  0  1  1  1\n'
+elements['Y'] =  'Iz=  39 Norb= 15 Ion=  0 Config= 4d1_5s2\n' \
+                  'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  5\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3 -1\n' \
+                  'Occup  2  2  2  4  2  2  4  4  6  2  2  4  1  0  2\n' \
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1\n'
 
 common_keys = [
     'dir',
+    'lat',
+    'nq',
+    'iprim',
+    'nqr2',
+    'nl',
+    'lamda',
+    'amax',
+    'bmax',
+]
+
+bmdl_keys = [
 ]
 
 kgrn_keys = [
@@ -154,12 +177,18 @@ class EMTO(Calculator):
             self.kgrn_params[key] = None
 
         self.energy_pbe = 0
-        self.kgrn_params['sws'] = 2.68
-        self.kgrn_params['ncpa'] = 20
-        self.kgrn_params['mnta'] = 1
-        self.kgrn_params['amix'] = 0.05
-        self.kgrn_params['afm'] = 'P'
-        self.kgrn_params['niter'] = 50
+
+        self.common_params['dir'] = 'work'
+    #    self.common_params['nq'] = 1
+        self.common_params['lat'] = 1
+        self.common_params['iprim'] = 0
+        self.common_params['nqr2'] = 0
+        self.common_params['nl'] = 7
+        self.common_params['lamda'] = 2.50
+        self.common_params['amax'] = 4.50
+        self.common_params['bmax'] = 4.50
+        self.common_params['nghbp'] = 13
+
         self.kgrn_params['nlin'] = 31
         self.kgrn_params['nprn'] = 0
         self.kgrn_params['ncpa'] = 20
@@ -206,7 +235,7 @@ class EMTO(Calculator):
         self.kgrn_params['tolef'] = '1.d-07' # 1e-07
         self.kgrn_params['tolcpa'] = '1.d-06' # 1e-06
         self.kgrn_params['tfermi'] = 5000.0
-        self.kgrn_params['sws'] = 2.69
+    #    self.kgrn_params['sws'] = 2.69
         self.kgrn_params['nsws'] = 1
         self.kgrn_params['dsws'] = 0.05
         self.kgrn_params['alpcpa'] = 0.6020
@@ -215,8 +244,10 @@ class EMTO(Calculator):
         for key in kwargs:
             if key in self.common_params:
                 self.common_params[key] = kwargs[key]
-        #    if key in self.kgrn_params:
-        #        self.kgrn_params[key] = kwargs[key]
+            if key in self.bmdl_params:
+                self.bmdl_params[key] = kwargs[key]
+            if key in self.kgrn_params:
+                self.kgrn_params[key] = kwargs[key]
 
     def set_kgrn(self, **kwargs):
         for key in kwargs:
@@ -291,12 +322,55 @@ class EMTO(Calculator):
         bmdl.write('DIR001=./\n')
         bmdl.write('DIR006=\n')
         bmdl.write('Madelung potential\n')
-        bmdl.write('NL.....= 7\n')
-        bmdl.write('LAMDA....=      2.50 AMAX....=      4.50 BMAX....=      4.50\n')
-        bmdl.write('NQ....=  1 LAT...= 2 IPRIM.= 1 NQR2..= 0\n')
-        bmdl.write('A........=     1.000 B.......=     1.000 C.......=     1.000\n')
-        bmdl.write('ALFA.....=      90.0 BETA....=      90.0 GAMMA...=      90.0\n')
-        bmdl.write('QX(1)....=       0.0 QY(1)...=       0.0 QZ(1)...=       0.0\n')
+
+        bmdl.write('NL.....={:2d}\n'.format(self.common_params['nl']))
+
+        bmdl.write('LAMDA....={:10.2f} '.format(self.common_params['lamda']))
+        bmdl.write('AMAX....={:10.2f} '.format(self.common_params['amax']))
+        bmdl.write('BMAX....={:10.2f}\n'.format(self.common_params['bmax']))
+
+        bmdl.write('NQ....={:3d} '.format(atoms.get_number_of_atoms()))
+        bmdl.write('LAT...={:2d} '.format(self.common_params['lat']))
+        bmdl.write('IPRIM.={:2d} '.format(self.common_params['iprim']))
+        bmdl.write('NQR2..={:2d}\n'.format(self.common_params['nqr2']))
+
+        if self.common_params['iprim']==0:
+            cell = atoms.get_cell()
+
+            a = np.linalg.norm(cell[0])
+            b = np.linalg.norm(cell[1])
+            c = np.linalg.norm(cell[2])
+
+            bmdl.write('A........={:10.3f} '.format(a/a))
+            bmdl.write('B.......={:10.3f} '.format(b/a))
+            bmdl.write('C.......={:10.3f}\n'.format(c/a))
+
+            if self.common_params['lat']==2: # fcc
+                l = cell[1][0]*2
+            elif self.common_params['lat']==3: # bcc
+                l = cell[0][0]*2
+            else:
+                l = cell[0][0]
+
+            cell = atoms.get_cell().copy()/l
+            bmdl.write('BSX......={:10.7f} '.format(cell[0][0]))
+            bmdl.write('BSY.....={:10.7f} '.format(cell[0][1]))
+            bmdl.write('BSZ.....={:10.7f}\n'.format(cell[0][2]))
+            bmdl.write('BSX......={:10.7f} '.format(cell[1][0]))
+            bmdl.write('BSY.....={:10.7f} '.format(cell[1][1]))
+            bmdl.write('BSZ.....={:10.7f}\n'.format(cell[1][2]))
+            bmdl.write('BSX......={:10.7f} '.format(cell[2][0]))
+            bmdl.write('BSY.....={:10.7f} '.format(cell[2][1]))
+            bmdl.write('BSZ.....={:10.7f}\n'.format(cell[2][2]))
+
+            for atom in atoms:
+                bmdl.write('QX.......={:10.7f} '.format(atom.position[0]))
+                bmdl.write('QY......={:10.7f} '.format(atom.position[1]))
+                bmdl.write('QZ......={:10.7f}\n'.format(atom.position[2]))
+        else:
+            bmdl.write('A........=     1.000 B.......=     1.000 C.......=     1.000\n')
+            bmdl.write('ALFA.....=      90.0 BETA....=      90.0 GAMMA...=      90.0\n')
+            bmdl.write('QX(1)....=       0.0 QY(1)...=       0.0 QZ(1)...=       0.0\n')
 
     def write_kstr(self, atoms):
         kstr = open('kstr.dat', 'w')
@@ -307,14 +381,56 @@ class EMTO(Calculator):
         kstr.write('Slope matrices, fcc (spdf), (kappa*w)^2= 0.0\n')
         kstr.write('NL.....= 4 NLH...=11 NLW...= 9 NDER..= 6 ITRANS= 3 NPRN..= 0\n')
         kstr.write('(K*W)^2..=  0.000000 DMAX....=    1.7000 RWATS...=      0.10\n')
-        kstr.write('NQ3...=  1 LAT...= 2 IPRIM.= 0 NGHBP.=13 NQR2..= 0\n')
-        kstr.write('A........= 1.0000000 B.......= 1.0000000 C.......= 1.0000000\n')
-        kstr.write('BSX......= 0.5000000 BSY.....= 0.5000000 BSZ.....= 0.0000000\n')
-        kstr.write('BSX......= 0.0000000 BSY.....= 0.5000000 BSZ.....= 0.5000000\n')
-        kstr.write('BSX......= 0.5000000 BSY.....= 0.0000000 BSZ.....= 0.5000000\n')
-        kstr.write('QX(IQ)...= 0.0000000 QY......= 0.0000000 QZ......= 0.0000000\n')
+
+        kstr.write('NQ....={:3d} '.format(atoms.get_number_of_atoms()))
+        kstr.write('LAT...={:2d} '.format(self.common_params['lat']))
+        kstr.write('IPRIM.={:2d} '.format(self.common_params['iprim']))
+        kstr.write('NGHBP.={:2d} '.format(self.common_params['nghbp']))
+        kstr.write('NQR2..={:2d}\n'.format(self.common_params['nqr2']))
+
+        if self.common_params['iprim']==0:
+            cell = atoms.get_cell()
+
+            a = np.linalg.norm(cell[0])
+            b = np.linalg.norm(cell[1])
+            c = np.linalg.norm(cell[2])
+
+            kstr.write('A........={:10.3f} '.format(a / a))
+            kstr.write('B.......={:10.3f} '.format(b / a))
+            kstr.write('C.......={:10.3f}\n'.format(c / a))
+
+            if self.common_params['lat'] == 2:  # fcc
+                l = cell[1][0] * 2
+            elif self.common_params['lat'] == 3:  # bcc
+                l = cell[0][0] * 2
+            else:
+                l = cell[0][0]
+
+            cell = atoms.get_cell().copy() / l
+            kstr.write('BSX......={:10.7f} '.format(cell[0][0]))
+            kstr.write('BSY.....={:10.7f} '.format(cell[0][1]))
+            kstr.write('BSZ.....={:10.7f}\n'.format(cell[0][2]))
+            kstr.write('BSX......={:10.7f} '.format(cell[1][0]))
+            kstr.write('BSY.....={:10.7f} '.format(cell[1][1]))
+            kstr.write('BSZ.....={:10.7f}\n'.format(cell[1][2]))
+            kstr.write('BSX......={:10.7f} '.format(cell[2][0]))
+            kstr.write('BSY.....={:10.7f} '.format(cell[2][1]))
+            kstr.write('BSZ.....={:10.7f}\n'.format(cell[2][2]))
+
+            for atom in atoms:
+                kstr.write('QX.......={:10.7f} '.format(atom.position[0]))
+                kstr.write('QY......={:10.7f} '.format(atom.position[1]))
+                kstr.write('QZ......={:10.7f}\n'.format(atom.position[2]))
+        else:
+            kstr.write('A........=     1.000 B.......=     1.000 C.......=     1.000\n')
+            kstr.write('ALFA.....=      90.0 BETA....=      90.0 GAMMA...=      90.0\n')
+            kstr.write('QX(1)....=       0.0 QY(1)...=       0.0 QZ(1)...=       0.0\n')
+
         kstr.write('a/w(IQ)..= 0.70 0.70 0.70 0.70\n')
-        kstr.write('LAMDA....=    2.5000 AMAX....=    4.5000 BMAX....=    4.5000\n')
+
+        kstr.write('LAMDA....={:10.4f} '.format(self.common_params['lamda']))
+        kstr.write('AMAX....={:10.4f} '.format(self.common_params['amax']))
+        kstr.write('BMAX....={:10.4f}\n'.format(self.common_params['bmax']))
 
     def write_shape(self, atoms):
         shape = open('shape.dat', 'w')
