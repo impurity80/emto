@@ -189,6 +189,7 @@ class EMTO(Calculator):
         self.common_params['bmax'] = 4.50
         self.common_params['nghbp'] = 13
 
+        self.kgrn_params['niter'] = 100
         self.kgrn_params['nlin'] = 31
         self.kgrn_params['nprn'] = 0
         self.kgrn_params['ncpa'] = 20
