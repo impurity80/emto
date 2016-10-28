@@ -12,19 +12,16 @@ atoms = bulk('Cu', 'hcp', a=a0, c=c0)
 atoms.set_tags([1,1])
 
 alloys = []
-alloys.append(Alloy(1, 'Cu', 1.0, 0.0))
+alloys.append(Alloy(1, 'Cr', 0.15, 0.0))
 alloys.append(Alloy(1, 'Ni', 0.15, 0.0))
 alloys.append(Alloy(1, 'Fe', 0.35, 1.0))
 alloys.append(Alloy(1, 'Fe', 0.35, -1.0))
 
 calc = EMTO()
-calc.set(dir='work-2',
-         ncpa=20,
-         mnta=1,
+calc.set(dir='work-3',
+         lat=4,
          amix=0.05,
          afm='F',
-         iprim=0,
-         lat=4,
          kpts=[1, 13, 1])
 
 calc.set_alloys(alloys)
@@ -35,7 +32,3 @@ v = atoms.get_volume()
 
 print v, p , 'eV'
 
-# bulk.read_energy_PBE()
-
-
-# view(bulk)

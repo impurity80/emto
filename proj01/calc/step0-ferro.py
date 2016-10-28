@@ -6,16 +6,15 @@ from ase.visualize import view
 from emto import *
 from ase.lattice import bulk
 
-a0 = 3.60/np.sqrt(2)
-c0 = np.sqrt(8/3.0)*a0
-atoms = bulk('Cu', 'hcp', a=a0, c=c0)
+atoms = bulk('Cu', 'fcc', a=3.65)
+atoms.set_initial_magnetic_moments([1.0])
 
 calc = EMTO()
-calc.set(dir='work-2',
+calc.set(dir='work-0',
+         lat=2, # fcc lattice calculation
          amix=0.05,
          afm='F',
-         lat=4,
-         kpts=[1, 13, 1])
+         kpts=[1,13,1])
 
 atoms.set_calculator(calc)
 p = atoms.get_potential_energy()

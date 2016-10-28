@@ -15,38 +15,58 @@ from ase.utils import devnull
 
 from ase.calculators.singlepoint import SinglePointCalculator
 
+def save( filename, arg ):
+    f = open(filename, 'a+t')
+    f.write('{0} \n'.format(arg))
+    f.close()
+
 class Alloy():
-    def __init__(self, index, symbol, conc, split):
-        self.index = index
+    def __init__(self, id, symbol, conc, split):
+        self.id = id
         self.symbol = symbol
         self.conc = conc
         self.split = split
 
 element_keys = [
-    'Al', # 2d metal
+    'Al', 'Si', 'P', 'S', # 2d metal
     'Ti','V','Cr','Mn','Fe','Co','Ni','Cu','Zn', # 3d transition metal
-    'Y', # 4d transition metal
+    'Y','Nb','Mo' # 4d transition metal
 ]
 
 elements = {}
 for key in element_keys:
     elements[key] = None
 
-elements['Al'] =  'Iz=  13 Norb=  7 Ion=  0 Config= 3s2_3p1\n' \
-                  'n      1  2  2  2  3  3  3\n' \
-                  'Kappa -1 -1  1 -2 -1  1 -2\n' \
-                  'Occup  2  2  2  4  2  0  1\n' \
-                  'Valen  0  0  0  0  1  1  1\n'
-elements['Ti'] =  'Iz=  22 Norb= 10 Ion=  0 Config= 3d2_4s2\n' \
-                  'n      1  2  2  2  3  3  3  3  3  4\n' \
-                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1\n' \
-                  'Occup  2  2  2  4  2  2  4  2  0  2\n' \
-                  'Valen  0  0  0  0  0  0  0  1  1  1\n'
-elements['V'] =   'Iz=  23 Norb= 10 Ion=  0 Config= 3d3_4s2\n' \
-                  'n      1  2  2  2  3  3  3  3  3  4\n' \
-                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1\n' \
-                  'Occup  2  2  2  4  2  2  4  3  0  2\n' \
-                  'Valen  0  0  0  0  0  0  0  1  1  1\n'
+elements['Al'] =  'Iz=  13 Norb=  6 Ion=  0 Config= 3s2_3p1\n' \
+                  'n      1  2  2  2  3  3\n' \
+                  'Kappa -1 -1  1 -2 -1  1\n' \
+                  'Occup  2  2  2  4  2  1\n' \
+                  'Valen  0  0  0  0  1  1\n'
+elements['Si'] =  'Iz=  14 Norb=  6 Ion=  0 Config= 3s2_3p2\n' \
+                  'n      1  2  2  2  3  3\n' \
+                  'Kappa -1 -1  1 -2 -1  1\n' \
+                  'Occup  2  2  2  4  2  2\n' \
+                  'Valen  0  0  0  0  1  1\n'
+elements['P'] =  'Iz=  15 Norb=  6 Ion=  0 Config= 3s2_3p3\n' \
+                  'n      1  2  2  2  3  3\n' \
+                  'Kappa -1 -1  1 -2 -1 -2\n' \
+                  'Occup  2  2  2  4  2  3\n' \
+                  'Valen  0  0  0  0  1  1\n'
+elements['S'] =  'Iz=  16 Norb=  6 Ion=  0 Config= 3s2_3p4\n' \
+                  'n      1  2  2  2  3  3\n' \
+                  'Kappa -1 -1  1 -2 -1 -2\n' \
+                  'Occup  2  2  2  4  2  4\n' \
+                  'Valen  0  0  0  0  1  1\n'
+elements['Ti'] =  'Iz=  22 Norb=  9 Ion=  0 Config= 3d2_4s2\n' \
+                  'n      1  2  2  2  3  3  3  3  4\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -1\n' \
+                  'Occup  2  2  2  4  2  2  4  2  2\n' \
+                  'Valen  0  0  0  0  0  0  0  1  1\n'
+elements['V'] =   'Iz=  23 Norb=  9 Ion=  0 Config= 3d3_4s2\n' \
+                  'n      1  2  2  2  3  3  3  3  4\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -1\n' \
+                  'Occup  2  2  2  4  2  2  4  3  2\n' \
+                  'Valen  0  0  0  0  0  0  0  1  1\n'
 elements['Cr'] =  'Iz=  24 Norb= 10 Ion=  0 Config= 3d5_4s1\n' \
                   'n      1  2  2  2  3  3  3  3  3  4\n' \
                   'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1\n' \
@@ -87,6 +107,16 @@ elements['Y'] =  'Iz=  39 Norb= 15 Ion=  0 Config= 4d1_5s2\n' \
                   'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3 -1\n' \
                   'Occup  2  2  2  4  2  2  4  4  6  2  2  4  1  0  2\n' \
                   'Valen  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1\n'
+elements['Nb'] =  'Iz=  41 Norb= 14 Ion=  0 Config= 4d4_5s1\n' \
+                  'n      1  2  2  2  3  3  3  3  3  4  4  4  4  5\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -1\n' \
+                  'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  1\n' \
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  1  1\n'
+elements['Mo'] =  'Iz=  42 Norb= 15 Ion=  0 Config= 4d5_5s1\n' \
+                  'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  5\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3 -1\n' \
+                  'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  1  1\n' \
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1\n'
 
 common_keys = [
     'dir',
@@ -109,7 +139,7 @@ kgrn_keys = [
     'nprn',
     'ncpa',
 #    'nt',
-    'mnta',
+#    'mnta',
     'mode',
     'frc',
     'dos',
@@ -195,10 +225,10 @@ class EMTO(Calculator):
         self.kgrn_params['nlin'] = 31
         self.kgrn_params['nprn'] = 0
         self.kgrn_params['ncpa'] = 20
-        self.kgrn_params['nt'] = 1
-        self.kgrn_params['mnta'] = 4
+    #    self.kgrn_params['nt'] = 1
+    #    self.kgrn_params['mnta'] = 4
         self.kgrn_params['mode'] = '3D'
-        self.kgrn_params['frc'] = 'N'
+        self.kgrn_params['frc'] = 'Y'
         self.kgrn_params['dos'] = 'N'
         self.kgrn_params['ops'] = 'N'
         self.kgrn_params['afm'] = 'F'
@@ -239,7 +269,7 @@ class EMTO(Calculator):
         self.kgrn_params['tole'] = '1.d-08' # 1e-08
         self.kgrn_params['tolef'] = '1.d-07' # 1e-07
         self.kgrn_params['tolcpa'] = '1.d-06' # 1e-06
-        self.kgrn_params['tfermi'] = 5000.0
+        self.kgrn_params['tfermi'] = 500.0
     #    self.kgrn_params['sws'] = 2.69
         self.kgrn_params['nsws'] = 1
         self.kgrn_params['dsws'] = 0.05
@@ -261,13 +291,15 @@ class EMTO(Calculator):
     def initialize(self, atoms):
         self.natoms = len(atoms)
 
-        if len(self.alloys) > 0:
-            a = 0
+        for atom in atoms:
+            if atom.tag==0:
+                self.alloys.append(Alloy(atom.tag, atom.symbol, 1.0, atom.magmom))
+
     #    self.alloys = []
     #    for atom in atoms:
     #        self.alloys.append(Alloy(atom.index, atom.symbol, 1.0, 1.0))
 
-    def calculation_required(selfself, atoms, quantities):
+    def calculation_required(self, atoms, quantities):
         return True
 
     def get_potential_energy(self, atoms, force_consistent=False):
@@ -283,8 +315,9 @@ class EMTO(Calculator):
         self.set_results(atoms)
 
     def calculate(self, atoms):
+        cur_dir = os.getcwd()
         os.system('rm -r {0}'.format(self.common_params['dir']))
-        os.system('mkdir {0}'.format(self.common_params['dir']))
+        os.system('mkdir -p {0}'.format(self.common_params['dir']))
         os.chdir(self.common_params['dir'])
 
         self.initialize(atoms)
@@ -312,7 +345,7 @@ class EMTO(Calculator):
 
         self.set_results(atoms)
 
-        os.chdir('..')
+        os.chdir(cur_dir)
 
     def set_results(self, atoms):
         self.read(atoms)
@@ -471,7 +504,7 @@ class EMTO(Calculator):
         kgrn.write('NPRN.={:3d} '.format(self.kgrn_params['nprn']))
         kgrn.write('NCPA.={:3d} '.format(self.kgrn_params['ncpa']))
         kgrn.write('NT...={:3d} '.format(atoms.get_number_of_atoms()))
-        kgrn.write('MNTA.={:3d}\n'.format(self.kgrn_params['mnta']))
+        kgrn.write('MNTA.={:3d}\n'.format(len(self.alloys)))
 
         kgrn.write('MODE..={:>3} '.format(self.kgrn_params['mode']))
         kgrn.write('FRC..={:>3} '.format(self.kgrn_params['frc']))
@@ -532,20 +565,24 @@ class EMTO(Calculator):
         kgrn.write('EFGS...=  0.000 HX....=  0.100 NX...=  5 NZ0..=  6 STMP..= N\n')
         kgrn.write('Symb   IQ IT ITA NZ  CONC   Sm(s)  S(ws) WS(wst) QTR SPLT Fix\n')
 
-        i = 1
         for atom in atoms:
-            j = 1
+            i = 1
             for alloy in self.alloys:
-                kgrn.write(alloy.symbol)
-                kgrn.write('{0:7d}{0:3d}'.format(i))
-                kgrn.write('{0:3d}'.format(j))
-                nz = elements[alloy.symbol].split(' ')[2]
-                kgrn.write('{0:4d}  '.format(int(nz)))
-                kgrn.write('{:4.3f}'.format(alloy.conc))
-                kgrn.write('  1.000  1.000  1.000  0.0 ')
-                kgrn.write('{:4.1f}  N\n'.format(alloy.split))
-                i = i+1
-                j = j+1
+                if alloy.id == atom.tag:
+                    kgrn.write('{0:<2}'.format(alloy.symbol))
+                    kgrn.write('{0:7d}{0:3d}'.format(atom.index+1))
+                    kgrn.write('{0:3d}'.format(i))
+                    nz = elements[alloy.symbol].split(' ')[2]
+                    kgrn.write('{0:4d}  '.format(int(nz)))
+                    kgrn.write('{:4.3f}'.format(alloy.conc))
+                    kgrn.write('  1.000  1.000  1.000  0.0 ')
+                    kgrn.write('{:4.1f}  N\n'.format(alloy.split))
+                    i = i+1
+
+             #   print(alloy.id, alloy.symbol, alloy.conc)
+
+#        i = 1
+#        for atom in atoms:
 
     #    for atom in atoms:
     #        kgrn.write(atom.symbol + '      1  1  1  ')
