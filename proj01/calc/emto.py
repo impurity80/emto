@@ -108,7 +108,7 @@ kgrn_keys = [
     'nlin',
     'nprn',
     'ncpa',
-    'nt',
+#    'nt',
     'mnta',
     'mode',
     'frc',
@@ -124,15 +124,17 @@ kgrn_keys = [
     'sofc',
     'kmsh',
     'ibz',
-    'nkx',
-    'nky',
-    'nkz',
+    'kpts'
+#    'nkx',
+#    'nky',
+#    'nkz',
     'fbz',
     'kmsh2',
     'ibz2',
-    'nkx2',
-    'nky2',
-    'nkz2',
+    'kpts2'
+#    'nkx2',
+#    'nky2',
+#    'nkz2',
     'zmsh',
     'nz1',
     'nz2',
@@ -208,16 +210,18 @@ class EMTO(Calculator):
         self.kgrn_params['shf'] = 0
         self.kgrn_params['sofc'] = 'N'
         self.kgrn_params['kmsh'] = 'G'
-        self.kgrn_params['ibz'] = 2
-        self.kgrn_params['nkx'] = 0
-        self.kgrn_params['nky'] = 13
-        self.kgrn_params['nkz'] = 0
+    #    self.kgrn_params['ibz'] = 2
+    #    self.kgrn_params['nkx'] = 0
+    #    self.kgrn_params['nky'] = 13
+    #    self.kgrn_params['nkz'] = 0
+        self.kgrn_params['kpts'] = [1,1,1]
         self.kgrn_params['fbz'] = 'N'
         self.kgrn_params['kmsh2'] = 'G'
         self.kgrn_params['ibz2'] = 1
-        self.kgrn_params['nkx2'] = 4
-        self.kgrn_params['nky2'] = 0
-        self.kgrn_params['nkz2'] = 51
+    #    self.kgrn_params['nkx2'] = 4
+    #    self.kgrn_params['nky2'] = 0
+    #    self.kgrn_params['nkz2'] = 51
+        self.kgrn_params['kpts2'] = [1,1,1]
         self.kgrn_params['zmsh'] = 'C'
         self.kgrn_params['nz1'] = 16
         self.kgrn_params['nz2'] = 16
@@ -365,9 +369,9 @@ class EMTO(Calculator):
             bmdl.write('BSZ.....={:10.7f}\n'.format(cell[2][2]))
 
             for atom in atoms:
-                bmdl.write('QX.......={:10.7f} '.format(atom.position[0]))
-                bmdl.write('QY......={:10.7f} '.format(atom.position[1]))
-                bmdl.write('QZ......={:10.7f}\n'.format(atom.position[2]))
+                bmdl.write('QX.......={:10.7f} '.format(atom.position[0]/a))
+                bmdl.write('QY......={:10.7f} '.format(atom.position[1]/a))
+                bmdl.write('QZ......={:10.7f}\n'.format(atom.position[2]/a))
         else:
             bmdl.write('A........=     1.000 B.......=     1.000 C.......=     1.000\n')
             bmdl.write('ALFA.....=      90.0 BETA....=      90.0 GAMMA...=      90.0\n')
@@ -419,15 +423,16 @@ class EMTO(Calculator):
             kstr.write('BSZ.....={:10.7f}\n'.format(cell[2][2]))
 
             for atom in atoms:
-                kstr.write('QX.......={:10.7f} '.format(atom.position[0]))
-                kstr.write('QY......={:10.7f} '.format(atom.position[1]))
-                kstr.write('QZ......={:10.7f}\n'.format(atom.position[2]))
+                kstr.write('QX.......={:10.7f} '.format(atom.position[0]/a))
+                kstr.write('QY......={:10.7f} '.format(atom.position[1]/a))
+                kstr.write('QZ......={:10.7f}\n'.format(atom.position[2]/a))
         else:
             kstr.write('A........=     1.000 B.......=     1.000 C.......=     1.000\n')
             kstr.write('ALFA.....=      90.0 BETA....=      90.0 GAMMA...=      90.0\n')
-            kstr.write('QX(1)....=       0.0 QY(1)...=       0.0 QZ(1)...=       0.0\n')
+        #    kstr.write('QX(1)....=       0.0 QY(1)...=       0.0 QZ(1)...=       0.0\n')
 
-        kstr.write('a/w(IQ)..= 0.70 0.70 0.70 0.70\n')
+        for atom in atoms:
+            kstr.write('a/w(IQ)..= 0.70 0.70 0.70 0.70\n')
 
         kstr.write('LAMDA....={:10.4f} '.format(self.common_params['lamda']))
         kstr.write('AMAX....={:10.4f} '.format(self.common_params['amax']))
@@ -465,7 +470,7 @@ class EMTO(Calculator):
         kgrn.write('NLIN.={:3d} '.format(self.kgrn_params['nlin']))
         kgrn.write('NPRN.={:3d} '.format(self.kgrn_params['nprn']))
         kgrn.write('NCPA.={:3d} '.format(self.kgrn_params['ncpa']))
-        kgrn.write('NT...={:3d} '.format(self.kgrn_params['nt']))
+        kgrn.write('NT...={:3d} '.format(atoms.get_number_of_atoms()))
         kgrn.write('MNTA.={:3d}\n'.format(self.kgrn_params['mnta']))
 
         kgrn.write('MODE..={:>3} '.format(self.kgrn_params['mode']))
@@ -483,17 +488,17 @@ class EMTO(Calculator):
         kgrn.write('SOFC.={:>3}\n'.format(self.kgrn_params['sofc']))
 
         kgrn.write('KMSH...={:>2} '.format(self.kgrn_params['kmsh']))
-        kgrn.write('IBZ..={:3d} '.format(self.kgrn_params['ibz']))
-        kgrn.write('NKX..={:3d} '.format(self.kgrn_params['nkx']))
-        kgrn.write('NKY..={:3d} '.format(self.kgrn_params['nky']))
-        kgrn.write('NKZ..={:3d} '.format(self.kgrn_params['nkz']))
+        kgrn.write('IBZ..={:3d} '.format(self.common_params['lat']))
+        kgrn.write('NKX..={:3d} '.format(self.kgrn_params['kpts'][0]))
+        kgrn.write('NKY..={:3d} '.format(self.kgrn_params['kpts'][1]))
+        kgrn.write('NKZ..={:3d} '.format(self.kgrn_params['kpts'][2]))
         kgrn.write('FBZ..={:>3}\n'.format(self.kgrn_params['fbz']))
 
         kgrn.write('KMSH2..={:>2} '.format(self.kgrn_params['kmsh2']))
         kgrn.write('IBZ2.={:3d} '.format(self.kgrn_params['ibz2']))
-        kgrn.write('NKX2.={:3d} '.format(self.kgrn_params['nkx2']))
-        kgrn.write('NKY2.={:3d} '.format(self.kgrn_params['nky2']))
-        kgrn.write('NKZ2.={:3d}\n'.format(self.kgrn_params['nkz2']))
+        kgrn.write('NKX2.={:3d} '.format(self.kgrn_params['kpts2'][0]))
+        kgrn.write('NKY2.={:3d} '.format(self.kgrn_params['kpts2'][1]))
+        kgrn.write('NKZ2.={:3d}\n'.format(self.kgrn_params['kpts2'][2]))
 
         kgrn.write('ZMSH...={:>2} '.format(self.kgrn_params['zmsh']))
         kgrn.write('NZ1..={:3d} '.format(self.kgrn_params['nz1']))
@@ -528,14 +533,19 @@ class EMTO(Calculator):
         kgrn.write('Symb   IQ IT ITA NZ  CONC   Sm(s)  S(ws) WS(wst) QTR SPLT Fix\n')
 
         i = 1
-        for alloy in self.alloys:
-            kgrn.write(alloy.symbol + '      1  1' + '{0:3d}'.format(i))
-            nz = elements[alloy.symbol].split(' ')[2]
-            kgrn.write('{0:4d}  '.format(int(nz)))
-            kgrn.write('{:4.3f}'.format(alloy.conc))
-            kgrn.write('  1.000  1.000  1.000  0.0 ')
-            kgrn.write('{:4.1f}  N\n'.format(alloy.split))
-            i = i+1
+        for atom in atoms:
+            j = 1
+            for alloy in self.alloys:
+                kgrn.write(alloy.symbol)
+                kgrn.write('{0:7d}{0:3d}'.format(i))
+                kgrn.write('{0:3d}'.format(j))
+                nz = elements[alloy.symbol].split(' ')[2]
+                kgrn.write('{0:4d}  '.format(int(nz)))
+                kgrn.write('{:4.3f}'.format(alloy.conc))
+                kgrn.write('  1.000  1.000  1.000  0.0 ')
+                kgrn.write('{:4.1f}  N\n'.format(alloy.split))
+                i = i+1
+                j = j+1
 
     #    for atom in atoms:
     #        kgrn.write(atom.symbol + '      1  1  1  ')
@@ -550,9 +560,10 @@ class EMTO(Calculator):
         kgrn.write('DX.......=  0.030000 DR1.....=  0.002000 TEST....=  1.00E-12\n')
         kgrn.write('TESTE....=  1.00E-12 TESTY...=  1.00E-12 TESTV...=  1.00E-12\n')
 
-        for alloy in self.alloys:
-            kgrn.write(alloy.symbol + '\n')
-            kgrn.write(elements[alloy.symbol])
+        for atom in atoms:
+            for alloy in self.alloys:
+                kgrn.write(alloy.symbol + '\n')
+                kgrn.write(elements[alloy.symbol])
     #    for atom in atoms:
     #        kgrn.write(atom.symbol + '\n')
     #        kgrn.write(elements[atom.symbol])
