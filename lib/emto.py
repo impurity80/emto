@@ -77,10 +77,10 @@ elements['Mn'] =  'Iz=  25 Norb= 10 Ion=  0 Config= 3d5_4s2\n' \
                   'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1\n' \
                   'Occup  2  2  2  4  2  2  4  4  1  2\n' \
                   'Valen  0  0  0  0  0  0  0  1  1  1\n'
-elements['Fe'] =  'Iz=  26 Norb= 10 Ion=  0 Config= 3d6_4s2\n' \
+elements['Fe'] =  'Iz=  26 Norb= 10 Ion=  0 Config= 3d7_4s1\n' \
                   'n      1  2  2  2  3  3  3  3  3  4\n' \
                   'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1\n' \
-                  'Occup  2  2  2  4  2  2  4  4  2  2\n' \
+                  'Occup  2  2  2  4  2  2  4  4  3  1\n' \
                   'Valen  0  0  0  0  0  0  0  1  1  1\n'
 elements['Co'] =  'Iz=  27 Norb= 10 Ion=  0 Config= 3d7_4s2\n' \
                   'n      1  2  2  2  3  3  3  3  3  4\n' \
@@ -134,6 +134,11 @@ bmdl_keys = [
 ]
 
 kgrn_keys = [
+    'strt',
+    'msgl',
+    'expan',
+    'fcd',
+    'func',
     'niter',
     'nlin',
     'nprn',
@@ -166,9 +171,10 @@ kgrn_keys = [
 #    'nky2',
 #    'nkz2',
     'zmsh',
-    'nz1',
-    'nz2',
-    'nz3',
+    'zpts',
+#    'nz1',
+#    'nz2',
+#    'nz3',
     'nres',
     'nzd',
     'depth',
@@ -221,6 +227,12 @@ class EMTO(Calculator):
         self.common_params['bmax'] = 4.50
         self.common_params['nghbp'] = 13
 
+        self.kgrn_params['strt'] = 'A'
+        self.kgrn_params['msgl'] = 0
+        self.kgrn_params['expan'] = 'S'
+        self.kgrn_params['fcd'] = 'Y'
+        self.kgrn_params['func'] = 'SCA'
+
         self.kgrn_params['niter'] = 100
         self.kgrn_params['nlin'] = 31
         self.kgrn_params['nprn'] = 0
@@ -253,9 +265,11 @@ class EMTO(Calculator):
     #    self.kgrn_params['nkz2'] = 51
         self.kgrn_params['kpts2'] = [1,1,1]
         self.kgrn_params['zmsh'] = 'C'
-        self.kgrn_params['nz1'] = 16
-        self.kgrn_params['nz2'] = 16
-        self.kgrn_params['nz3'] = 8
+
+        self.kgrn_params['zpts'] = [16,16,16]
+    #    self.kgrn_params['nz1'] = 16
+    #    self.kgrn_params['nz2'] = 16
+    #    self.kgrn_params['nz3'] = 8
         self.kgrn_params['nres'] = 4
         self.kgrn_params['nzd'] = 200
         self.kgrn_params['depth'] = 1.0
@@ -485,7 +499,13 @@ class EMTO(Calculator):
         kgrn = open('kgrn.dat', 'w')
         kgrn.write('KGRN                                               13 Oct 12\n')
         kgrn.write('JOBNAM=kgrn\n')
-        kgrn.write('STRT..=  A MSGL.=  0 EXPAN.= S FCD..=  Y FUNC..= SCA\n')
+
+        kgrn.write('STRT..={:>3} '.format(self.kgrn_params['strt']))
+        kgrn.write('MSGL.={:3d} '.format(self.kgrn_params['msgl']))
+        kgrn.write('EXPAN.={:>2} '.format(self.kgrn_params['expan']))
+        kgrn.write('FCD..={:>3} '.format(self.kgrn_params['fcd']))
+        kgrn.write('FUNC..={:>4}\n'.format(self.kgrn_params['func']))
+
         kgrn.write('FOR001=kstr.tfh\n')
         kgrn.write('FOR001=kstr.tfh\n')
         kgrn.write('DIR002=./\n')
@@ -534,9 +554,9 @@ class EMTO(Calculator):
         kgrn.write('NKZ2.={:3d}\n'.format(self.kgrn_params['kpts2'][2]))
 
         kgrn.write('ZMSH...={:>2} '.format(self.kgrn_params['zmsh']))
-        kgrn.write('NZ1..={:3d} '.format(self.kgrn_params['nz1']))
-        kgrn.write('NZ2..={:3d} '.format(self.kgrn_params['nz2']))
-        kgrn.write('NZ3..={:3d} '.format(self.kgrn_params['nz3']))
+        kgrn.write('NZ1..={:3d} '.format(self.kgrn_params['zpts'][0]))
+        kgrn.write('NZ2..={:3d} '.format(self.kgrn_params['zpts'][1]))
+        kgrn.write('NZ3..={:3d} '.format(self.kgrn_params['zpts'][2]))
         kgrn.write('NRES.={:3d} '.format(self.kgrn_params['nres']))
         kgrn.write('NZD.={:4d}\n'.format(self.kgrn_params['nzd']))
 
@@ -592,6 +612,7 @@ class EMTO(Calculator):
 
     #    kgrn.write('Cu      1  1  1  26  1.000  1.000  1.000  1.000  0.0  0.0  N\n')
         kgrn.write('Atom:  4 lines + NT*NTA*6 lines\n')
+
         kgrn.write('IEX...=  4 NP..= 251 NES..= 15 NITER=100 IWAT.=  0 NPRNA=  0\n')
         kgrn.write('VMIX.....=  0.300000 RWAT....=  3.500000 RMAX....= 20.000000\n')
         kgrn.write('DX.......=  0.030000 DR1.....=  0.002000 TEST....=  1.00E-12\n')
@@ -627,8 +648,8 @@ class EMTO(Calculator):
         file.close()
 
         for line in lines:
-            if line.rfind('TOT-PBE') > -1:
-                self.energy_pbe = float(line.split('(Ry)')[0].split('TOT-PBE')[1].strip())*13.6058
+            if line.rfind('TOT-LAG') > -1:
+                self.energy_pbe = float(line.split('(Ry)')[0].split('TOT-LAG')[1].strip())*13.6058
             #    self.energy_pbe = float(line.split(' ')[8].strip())*13.6058
             #    self.energy_pbe = self.energy_pbe*13.6058 # Ry -> eV conversion
 

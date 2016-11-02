@@ -15,8 +15,8 @@ result2 = '{0}/result/result2.txt'.format(curr_dir)
 save(result1, 'Energy calculation start')
 save(result2, 'cr, ni, fcc, bcc, hcp, bcc-fcc, hcp-fcc')
 
-XOPTIONS = np.linespace(0.0, 0.15, 16)
-YOPTIONS = np.linespace(0.0, 0.15, 16)
+XOPTIONS = np.linspace(0.0, 0.15, 16)
+YOPTIONS = np.linspace(0.0, 0.15, 16)
 
 save(result1, 'XOPTIONS: {0}'.format(XOPTIONS))
 save(result1, 'YOPTIONS: {0}'.format(YOPTIONS))
