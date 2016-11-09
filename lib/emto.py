@@ -77,10 +77,10 @@ elements['Mn'] =  'Iz=  25 Norb= 10 Ion=  0 Config= 3d5_4s2\n' \
                   'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1\n' \
                   'Occup  2  2  2  4  2  2  4  4  1  2\n' \
                   'Valen  0  0  0  0  0  0  0  1  1  1\n'
-elements['Fe'] =  'Iz=  26 Norb= 10 Ion=  0 Config= 3d7_4s1\n' \
+elements['Fe'] =  'Iz=  26 Norb= 10 Ion=  0 Config= 3d6_4s2\n' \
                   'n      1  2  2  2  3  3  3  3  3  4\n' \
                   'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1\n' \
-                  'Occup  2  2  2  4  2  2  4  4  3  1\n' \
+                  'Occup  2  2  2  4  2  2  4  4  2  2\n' \
                   'Valen  0  0  0  0  0  0  0  1  1  1\n'
 elements['Co'] =  'Iz=  27 Norb= 10 Ion=  0 Config= 3d7_4s2\n' \
                   'n      1  2  2  2  3  3  3  3  3  4\n' \
@@ -524,7 +524,10 @@ class EMTO(Calculator):
         kgrn.write('NPRN.={:3d} '.format(self.kgrn_params['nprn']))
         kgrn.write('NCPA.={:3d} '.format(self.kgrn_params['ncpa']))
         kgrn.write('NT...={:3d} '.format(atoms.get_number_of_atoms()))
-        kgrn.write('MNTA.={:3d}\n'.format(len(self.alloys)))
+
+        kgrn.write('MNTA.={:3d}\n'.format(len([alloy.conc for alloy in self.alloys if alloy.id == 1])))
+
+#         kgrn.write('MNTA.={:3d}\n'.format(len(self.alloys)))
 
         kgrn.write('MODE..={:>3} '.format(self.kgrn_params['mode']))
         kgrn.write('FRC..={:>3} '.format(self.kgrn_params['frc']))
@@ -620,8 +623,13 @@ class EMTO(Calculator):
 
         for atom in atoms:
             for alloy in self.alloys:
-                kgrn.write(alloy.symbol + '\n')
-                kgrn.write(elements[alloy.symbol])
+                if alloy.id == atom.tag:
+                    kgrn.write(alloy.symbol + '\n')
+                    kgrn.write(elements[alloy.symbol])
+
+    #        for alloy in self.alloys:
+    #            kgrn.write(alloy.symbol + '\n')
+    #            kgrn.write(elements[alloy.symbol])
     #    for atom in atoms:
     #        kgrn.write(atom.symbol + '\n')
     #        kgrn.write(elements[atom.symbol])
@@ -648,8 +656,8 @@ class EMTO(Calculator):
         file.close()
 
         for line in lines:
-            if line.rfind('TOT-LAG') > -1:
-                self.energy_pbe = float(line.split('(Ry)')[0].split('TOT-LAG')[1].strip())*13.6058
+            if line.rfind('TOT-PBE') > -1:
+                self.energy_pbe = float(line.split('(Ry)')[0].split('TOT-PBE')[1].strip())*13.6058
             #    self.energy_pbe = float(line.split(' ')[8].strip())*13.6058
             #    self.energy_pbe = self.energy_pbe*13.6058 # Ry -> eV conversion
 

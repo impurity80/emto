@@ -9,7 +9,7 @@ from ase.utils.eos import EquationOfState
 import matplotlib.pyplot as plt
 from ase.lattice import bulk
 
-id = 'mn'
+id = 'ni'
 curr_dir = os.getcwd()
 os.system('mkdir result')
 result = '{0}/result/result-{1}.txt'.format(curr_dir,id)
@@ -17,16 +17,26 @@ os.system('rm {0}'.format(result))
 
 save(result, 'delta calculation {0}'.format(id))
 
-a = 3.6
-fcc = bulk('Fe', 'fcc', a=3.6*0.995)
-fcc.set_tags([1])
+l = 3.6*0.98
+a = l/sqrt(2)
+c = l
 
-a0 = 3.60*0.995/np.sqrt(2)
+bct = Atoms('Fe2',
+             scaled_positions=[
+                 (0.0, 0.0, 0),
+                 (0.5, 0.5, 0.5)],
+             cell=[a, a, c],
+             pbc=(1, 1, 1))
+
+bct.set_tags([1,2])
+
+a0 = 3.60*0.98/np.sqrt(2)
 c0 = np.sqrt(8/3.0)*a0
+#c0 = a0*1.585
 hcp = bulk('Fe', 'hcp', a=a0, c=c0)
 hcp.set_tags([1,1])
 
-OPTIONS = np.linspace(0.2, 0.25, 2)
+OPTIONS = np.linspace(0.0, 0.1, 11)
 
 save(result, OPTIONS)
 
@@ -37,10 +47,12 @@ for opt in OPTIONS:
 
     alloys = []
 
-    fe = 1.0-opt
+    fe = 1.0-0.2-opt
 
-    alloys.append(Alloy(1, 'Mn', opt/2, 1.0))
-    alloys.append(Alloy(1, 'Mn', opt/2, -1.0))
+    alloys.append(Alloy(1, 'Mn', 0.2/2, 1.0))
+    alloys.append(Alloy(1, 'Mn', 0.2/2, -1.0))
+    alloys.append(Alloy(1, 'Ni', opt/2, 1.0))
+    alloys.append(Alloy(1, 'Ni', opt/2, -1.0))
     alloys.append(Alloy(1, 'Fe', fe/2, 1.0))
     alloys.append(Alloy(1, 'Fe', fe/2, -1.0))
 
@@ -51,8 +63,8 @@ for opt in OPTIONS:
              amix=0.05,
              afm='F', # ferromagnetic calculation
              kpts=[13,13,13],
-             fcd = 'Y',
-             sofc = 'N'
+     #        fcd = 'Y',
+     #        sofc = 'N'
              )
     calc.set_alloys(alloys)
 
@@ -62,21 +74,28 @@ for opt in OPTIONS:
 
     save(result, 'hcp result : {0} {1} {2}'.format(opt,hcp_v,hcp_p))
 
+    alloys = []
+    alloys.append(Alloy(1, 'Fe', fe, 1.0))
+    alloys.append(Alloy(1, 'Mn', 0.2, 1.0))
+    alloys.append(Alloy(1, 'Ni', opt, 1.0))
+
+    alloys.append(Alloy(2, 'Fe', fe, -1.0))
+    alloys.append(Alloy(2, 'Mn', 0.2, -1.0))
+    alloys.append(Alloy(2, 'Ni', opt, 1.0))
+
     calc = EMTO()
     calc.set(dir='work-{1}/opt-{0:0.4f}/fcc'.format(opt,id),
-             lat = 2, # fcc
+             lat = 6, # fcc
              ncpa=20,
              amix=0.05,
              afm='F', # ferromagnetic calculation
-             kpts=[13,13,13],
-             fcd = 'Y',
-             sofc = 'Z'
+             kpts=[13,13,13]
              )
     calc.set_alloys(alloys)
 
-    fcc.set_calculator(calc)
-    fcc_p = fcc.get_potential_energy()
-    fcc_v = fcc.get_volume()
+    bct.set_calculator(calc)
+    fcc_p = bct.get_potential_energy()/2
+    fcc_v = bct.get_volume()/2
 
     save(result, 'fcc result : {0} {1} {2}'.format(opt,fcc_v,fcc_p))
 

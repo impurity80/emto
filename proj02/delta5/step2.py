@@ -9,7 +9,7 @@ from ase.utils.eos import EquationOfState
 import matplotlib.pyplot as plt
 from ase.lattice import bulk
 
-id = 'mn'
+id = 2
 curr_dir = os.getcwd()
 os.system('mkdir result')
 result = '{0}/result/result-{1}.txt'.format(curr_dir,id)
@@ -50,7 +50,7 @@ for opt in OPTIONS:
              ncpa=20,
              amix=0.05,
              afm='F', # ferromagnetic calculation
-             kpts=[13,13,13],
+             kpts=[5,5,5],
              fcd = 'Y',
              sofc = 'N'
              )
@@ -68,9 +68,9 @@ for opt in OPTIONS:
              ncpa=20,
              amix=0.05,
              afm='F', # ferromagnetic calculation
-             kpts=[13,13,13],
+             kpts=[9,9,9],
              fcd = 'Y',
-             sofc = 'Z'
+             sofc = 'N'
              )
     calc.set_alloys(alloys)
 

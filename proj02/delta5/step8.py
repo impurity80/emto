@@ -9,7 +9,7 @@ from ase.utils.eos import EquationOfState
 import matplotlib.pyplot as plt
 from ase.lattice import bulk
 
-id = 'mn'
+id = 8
 curr_dir = os.getcwd()
 os.system('mkdir result')
 result = '{0}/result/result-{1}.txt'.format(curr_dir,id)
@@ -39,10 +39,10 @@ for opt in OPTIONS:
 
     fe = 1.0-opt
 
-    alloys.append(Alloy(1, 'Mn', opt/2, 1.0))
-    alloys.append(Alloy(1, 'Mn', opt/2, -1.0))
-    alloys.append(Alloy(1, 'Fe', fe/2, 1.0))
-    alloys.append(Alloy(1, 'Fe', fe/2, -1.0))
+    alloys.append(Alloy(1, 'Cr', opt/2, 2.0))
+    alloys.append(Alloy(1, 'Cr', opt/2, -2.0))
+    alloys.append(Alloy(1, 'Fe', fe/2, 2.0))
+    alloys.append(Alloy(1, 'Fe', fe/2, -2.0))
 
     calc = EMTO()
     calc.set(dir='work-{1}/opt-{0:0.4f}/hcp'.format(opt,id),
@@ -70,7 +70,7 @@ for opt in OPTIONS:
              afm='F', # ferromagnetic calculation
              kpts=[13,13,13],
              fcd = 'Y',
-             sofc = 'Z'
+             sofc = 'N'
              )
     calc.set_alloys(alloys)
 

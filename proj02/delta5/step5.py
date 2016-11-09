@@ -9,7 +9,7 @@ from ase.utils.eos import EquationOfState
 import matplotlib.pyplot as plt
 from ase.lattice import bulk
 
-id = 'mn'
+id = 5
 curr_dir = os.getcwd()
 os.system('mkdir result')
 result = '{0}/result/result-{1}.txt'.format(curr_dir,id)
@@ -44,15 +44,21 @@ for opt in OPTIONS:
     alloys.append(Alloy(1, 'Fe', fe/2, 1.0))
     alloys.append(Alloy(1, 'Fe', fe/2, -1.0))
 
+    alloys2 = []
+
+    alloys2.append(Alloy(1, 'Mn', opt, 0.0))
+    alloys2.append(Alloy(1, 'Fe', fe, 0.0))
+
+
     calc = EMTO()
     calc.set(dir='work-{1}/opt-{0:0.4f}/hcp'.format(opt,id),
              lat = 4, # hcp
              ncpa=20,
              amix=0.05,
              afm='F', # ferromagnetic calculation
-             kpts=[13,13,13],
+             kpts=[5,5,5],
              fcd = 'Y',
-             sofc = 'N'
+             sofc = 'N',
              )
     calc.set_alloys(alloys)
 
@@ -62,17 +68,13 @@ for opt in OPTIONS:
 
     save(result, 'hcp result : {0} {1} {2}'.format(opt,hcp_v,hcp_p))
 
-    calc = EMTO()
     calc.set(dir='work-{1}/opt-{0:0.4f}/fcc'.format(opt,id),
              lat = 2, # fcc
-             ncpa=20,
-             amix=0.05,
-             afm='F', # ferromagnetic calculation
-             kpts=[13,13,13],
-             fcd = 'Y',
-             sofc = 'Z'
+             kpts=[9,9,9],
+             amix=0.10,
+             afm='P',
              )
-    calc.set_alloys(alloys)
+    calc.set_alloys(alloys2)
 
     fcc.set_calculator(calc)
     fcc_p = fcc.get_potential_energy()
