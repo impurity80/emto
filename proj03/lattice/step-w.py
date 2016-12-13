@@ -29,7 +29,7 @@ for conc in OPTIONS:
     save(result, 'concentration : {0}'.format(conc))
 
     BCT_OPTIONS = np.linspace(0.98, 1.02, 9)
-    HCP_OPTIONS = np.linspace(0.96, 1.00, 9)
+    HCP_OPTIONS = np.linspace(0.99, 1.03, 9)
 
     bct_volumes = []
     bct_energies = []

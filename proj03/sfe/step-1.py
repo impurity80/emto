@@ -9,7 +9,7 @@ from ase.utils.eos import EquationOfState
 import matplotlib.pyplot as plt
 from ase.lattice import bulk
 
-id = '0'
+id = '1'
 
 curr_dir = os.getcwd()
 os.system('mkdir result')

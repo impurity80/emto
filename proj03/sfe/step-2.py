@@ -9,7 +9,7 @@ from ase.utils.eos import EquationOfState
 import matplotlib.pyplot as plt
 from ase.lattice import bulk
 
-id = '0'
+id = '2'
 
 curr_dir = os.getcwd()
 os.system('mkdir result')
@@ -18,13 +18,15 @@ os.system('rm {0}'.format(result))
 
 save(result, 'dhcp calculation')
 
-OPTIONS = np.linspace(0.90, 1.00, 11)
+OPTIONS = range(1,20) #np.linspace(0.90, 1.00, 11)
+
+print OPTIONS
 
 dhcp_volumes = []
 dhcp_energies = []
 
 for opt in OPTIONS:
-    a0 = 3.60 * opt / np.sqrt(2)
+    a0 = 3.60 * 0.9 / np.sqrt(2)
     c0 = np.sqrt(8 / 3.0) * a0
     hcp = bulk('Fe', 'hcp', a=a0, c=c0)
 
@@ -43,7 +45,7 @@ for opt in OPTIONS:
 
     calc = EMTO()
     calc.set(dir='work-{0}/opt-{1}'.format(id, opt),
-             lat=4,
+             lat=opt,
              ncpa=20,
              amix=0.05,
              afm='F',  # ferromagnetic calculation
