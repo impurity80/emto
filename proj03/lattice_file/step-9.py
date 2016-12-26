@@ -17,7 +17,7 @@ os.system('mkdir result')
 result = '{0}/result/result-{1}.txt'.format(curr_dir,name)
 os.system('rm {0}'.format(result))
 
-result_all = '{0}/result/result_all-{1}.txt'.format(curr_dir,name)
+result_all = '{0}/result/result_summary-{1}.csv'.format(curr_dir,name)
 os.system('rm {0}'.format(result_all))
 
 save(result, 'delta calculation {0}'.format(name))
@@ -31,18 +31,21 @@ for row in buffer:
 
     if id%16==9:
         c = row[1]
-        mn = row[2]
-        ni = row[3]
-        cr = row[4]
-        al = row[5]
-        si = row[6]
-        mo = row[7]
-        co = row[8]
-        cu = row[9]
-        nb = row[10]
-        ti = row[11]
-        v = row[12]
-        w = row[13]
+        mn = round(row[2]/2.0, 3 )*2.0
+        ni = round(row[3]/2.0, 3 )*2.0
+        cr = round(row[4]/2.0, 3 )*2.0
+        al = round(row[5]/2.0, 3 )*2.0
+        si = round(row[6]/2.0, 3 )*2.0
+        mo = round(row[7]/2.0, 3 )*2.0
+        co = round(row[8]/2.0, 3 )*2.0
+        cu = round(row[9]/2.0, 3 )*2.0
+        nb = round(row[10]/2.0, 3 )*2.0
+        ti = round(row[11]/2.0, 3 )*2.0
+        v = round(row[12]/2.0, 3 )*2.0
+        w = round(row[13]/2.0, 3 )*2.0
+
+        print row
+        print mn, ni, cr
 
         fe = 1-mn-ni-cr-al-si-mo-co-cu-nb-ti-v-w
 
@@ -143,7 +146,7 @@ for row in buffer:
 
         pivot = bct_energies[0]
         for b, e in zip(bct_volumes, bct_energies) :
-            if abs(e-pivot) < 0.04:
+            if e-pivot > -0.04 and e-pivot < 0.02:
                 bct_volumes2.append(b)
                 bct_energies2.append(e)
 
@@ -157,9 +160,9 @@ for row in buffer:
         save(result, BCT_OPTIONS)
         save(result, bct_volumes)
         save(result, bct_energies)
-        plt.plot(BCT_OPTIONS, bct_energies)
-        plt.xlabel('OPTIONS')
-        plt.ylabel('Energy (eV/atom)')
+    #    plt.plot(BCT_OPTIONS, bct_energies)
+    #    plt.xlabel('OPTIONS')
+    #    plt.ylabel('Energy (eV/atom)')
 
         plt.savefig('step-bct-{0}.png'.format(id))
         os.system('mv step-bct-{0}.png result'.format(id))
@@ -253,16 +256,16 @@ for row in buffer:
         save(result, HCP_OPTIONS)
         save(result, hcp_volumes)
         save(result, hcp_energies)
-        plt.plot(HCP_OPTIONS, hcp_energies)
-        plt.xlabel('OPTIONS')
-        plt.ylabel('Energy (eV/atom)')
+       # plt.plot(HCP_OPTIONS, hcp_energies)
+       # plt.xlabel('OPTIONS')
+       # plt.ylabel('Energy (eV/atom)')
 
-        plt.savefig('step-hcp-{0}.png'.format(id))
-        os.system('mv step-hcp-{0}.png result'.format(id))
+       # plt.savefig('step-hcp-{0}.png'.format(id))
+       # os.system('mv step-hcp-{0}.png result'.format(id))
 
         save(result, bct_energies)
         save(result, hcp_energies)
         save(result, '{0} {1} {2}'.format(bct_v0, bct_e0, bct_B))
         save(result, '{0} {1} {2}'.format(hcp_v0, hcp_e0, hcp_B))
 
-        save(result_all, '{0} | {1} | {2} | {3} {4} {5} {6} {7} {8} {9} {10} '.format(id, bct_energies, hcp_energies, bct_v0, bct_e0, bct_B, hcp_v0, hcp_e0, hcp_B, hcp_v0-bct_v0, hcp_e0-bct_e0))
+        save(result_all, '{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11} '.format(id, row, bct_energies, hcp_energies, bct_v0, bct_e0, bct_B, hcp_v0, hcp_e0, hcp_B, hcp_v0-bct_v0, hcp_e0-bct_e0))

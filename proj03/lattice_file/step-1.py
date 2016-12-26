@@ -253,12 +253,12 @@ for row in buffer:
         save(result, HCP_OPTIONS)
         save(result, hcp_volumes)
         save(result, hcp_energies)
-        plt.plot(HCP_OPTIONS, hcp_energies)
-        plt.xlabel('OPTIONS')
-        plt.ylabel('Energy (eV/atom)')
+       # plt.plot(HCP_OPTIONS, hcp_energies)
+       # plt.xlabel('OPTIONS')
+       # plt.ylabel('Energy (eV/atom)')
 
-        plt.savefig('step-hcp-{0}.png'.format(id))
-        os.system('mv step-hcp-{0}.png result'.format(id))
+       # plt.savefig('step-hcp-{0}.png'.format(id))
+       # os.system('mv step-hcp-{0}.png result'.format(id))
 
         save(result, bct_energies)
         save(result, hcp_energies)
