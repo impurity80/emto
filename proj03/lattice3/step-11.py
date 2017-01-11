@@ -10,7 +10,7 @@ from ase.utils.eos import EquationOfState
 import matplotlib.pyplot as plt
 from ase.lattice import bulk
 
-name = 'files0'
+name = 'files11'
 
 curr_dir = os.getcwd()
 # os.system('mkdir eos')
@@ -31,7 +31,7 @@ buffer = csv.reader(csvfile, delimiter=',', quoting=csv.QUOTE_NONNUMERIC)
 for row in buffer:
     id = int(row[0])
 
-    if id%12==0:
+    if id%12==11:
         c = row[1]
         mn = round(row[2]/2.0, 3 )*2.0
         ni = round(row[3]/2.0, 3 )*2.0
@@ -140,9 +140,6 @@ for row in buffer:
                 fccf_energies2.append(e)
 
         eos = EquationOfState(fccf_volumes2, fccf_energies2)
-
-        print fccf_volumes2, fccf_energies2
-
         fccf_v0, fccf_e0, fccf_B = eos.fit()
         eos.plot('eos/fccf-{0}.png'.format(id))
         os.system('mv eos/fccf-{0}.png result'.format(id))
