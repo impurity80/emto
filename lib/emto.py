@@ -1,3 +1,12 @@
+
+# *******************************************************
+#  Copyright (C) Korea Institute of Materials Science - All Rights Reserved
+#  Unauthorized copying of this file, via any medium is strictly prohibited
+#  Proprietary and confidential
+#  Written by Jae Hoon Jang <jhjang@kims.re.kr>, January 2017
+#  Version : 0.1
+# *******************************************************/
+
 from __future__ import print_function
 
 import os
@@ -27,15 +36,16 @@ class Alloy():
         self.conc = conc
         self.split = split
 
-element_keys = [
-    'Al', 'Si', 'P', 'S', # 2d metal
-    'Ti','V','Cr','Mn','Fe','Co','Ni','Cu','Zn', # 3d transition metal
-    'Y','Nb','Mo' # 4d transition metal
-]
+#element_keys = [
+#    'Al', 'Si', 'P', 'S', # 2d metal
+#    'Sc','Ti','V','Cr','Mn','Fe','Co','Ni','Cu','Zn', # 3d transition metal
+#    'Y','Zr','Nb','Mo','Tc','Ru','Rh','Pd','Ag','Cd', # 4d transition metal
+#
+#]
 
 elements = {}
-for key in element_keys:
-    elements[key] = None
+#for key in element_keys:
+#    elements[key] = None
 
 elements['Al'] =  'Iz=  13 Norb=  6 Ion=  0 Config= 3s2_3p1\n' \
                   'n      1  2  2  2  3  3\n' \
@@ -57,6 +67,11 @@ elements['S'] =  'Iz=  16 Norb=  6 Ion=  0 Config= 3s2_3p4\n' \
                   'Kappa -1 -1  1 -2 -1 -2\n' \
                   'Occup  2  2  2  4  2  4\n' \
                   'Valen  0  0  0  0  1  1\n'
+elements['Sc'] =  'Iz=  21 Norb=  9 Ion=  0 Config= 3d1_4s2\n' \
+                  'n      1  2  2  2  3  3  3  3  4\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -1\n' \
+                  'Occup  2  2  2  4  2  2  4  1  2\n' \
+                  'Valen  0  0  0  0  0  0  0  1  1\n'
 elements['Ti'] =  'Iz=  22 Norb=  9 Ion=  0 Config= 3d2_4s2\n' \
                   'n      1  2  2  2  3  3  3  3  4\n' \
                   'Kappa -1 -1  1 -2 -1  1 -2  2 -1\n' \
@@ -102,11 +117,16 @@ elements['Zn'] =  'Iz=  30 Norb= 10 Ion=  0 Config= 3d10_4s2\n' \
                   'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1\n' \
                   'Occup  2  2  2  4  2  2  4  4  6  2\n' \
                   'Valen  0  0  0  0  0  0  0  1  1  1\n'
-elements['Y'] =  'Iz=  39 Norb= 15 Ion=  0 Config= 4d1_5s2\n' \
-                  'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  5\n' \
-                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3 -1\n' \
-                  'Occup  2  2  2  4  2  2  4  4  6  2  2  4  1  0  2\n' \
-                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1\n'
+elements['Y'] =  'Iz=  39 Norb= 14 Ion=  0 Config= 4d1_5s2\n' \
+                  'n      1  2  2  2  3  3  3  3  3  4  4  4  4  5\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -1\n' \
+                  'Occup  2  2  2  4  2  2  4  4  6  2  2  4  1  2\n' \
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  1  1\n'
+elements['Zr'] =  'Iz=  40 Norb= 14 Ion=  0 Config= 4d2_5s2\n' \
+                  'n      1  2  2  2  3  3  3  3  3  4  4  4  4  5\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -1\n' \
+                  'Occup  2  2  2  4  2  2  4  4  6  2  2  4  2  2\n' \
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  1  1\n'
 elements['Nb'] =  'Iz=  41 Norb= 14 Ion=  0 Config= 4d4_5s1\n' \
                   'n      1  2  2  2  3  3  3  3  3  4  4  4  4  5\n' \
                   'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -1\n' \
@@ -117,11 +137,92 @@ elements['Mo'] =  'Iz=  42 Norb= 15 Ion=  0 Config= 4d5_5s1\n' \
                   'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3 -1\n' \
                   'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  1  1\n' \
                   'Valen  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1\n'
+elements['Tc'] =  'Iz=  43 Norb= 15 Ion=  0 Config= 4d6_5s1\n' \
+                  'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  5\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3 -1\n' \
+                  'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  2  1\n' \
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1\n'
+elements['Ru'] =  'Iz=  44 Norb= 15 Ion=  0 Config= 4d7_5s1\n' \
+                  'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  5\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3 -1\n' \
+                  'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  3  1\n' \
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1\n'
+elements['Rh'] =  'Iz=  45 Norb= 15 Ion=  0 Config= 4d8_5s1\n' \
+                  'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  5\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3 -1\n' \
+                  'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  4  1\n' \
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1\n'
+elements['Pd'] =  'Iz=  46 Norb= 14 Ion=  0 Config= 4d10_5s1\n' \
+                  'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3\n' \
+                  'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6\n' \
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  1  1\n'
+elements['Ag'] =  'Iz=  47 Norb= 15 Ion=  0 Config= 4d10_5s1\n' \
+                  'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  5\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3 -1\n' \
+                  'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6  1\n' \
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1\n'
+elements['Cd'] =  'Iz=  48 Norb= 15 Ion=  0 Config= 4d10_5s2\n' \
+                  'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  5\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3 -1\n' \
+                  'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6  2\n' \
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1\n'
+elements['La'] =  'Iz=  57 Norb= 19 Ion=  0 Config= 5d1_6s2\n' \
+                  'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  5  5  5  5  6\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3 -1  1 -2  2 -1\n' \
+                  'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6  2  2  4  1  2\n' \
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  1\n'
+elements['Ce'] =  'Iz=  58 Norb= 19 Ion=  0 Config= 4f2_6s2\n' \
+                  'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  4  5  5  5  6\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3  4 -1  1 -2 -1\n' \
+                  'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6  2  2  2  4  2\n' \
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  1\n'
+elements['Pr'] =  'Iz=  59 Norb= 19 Ion=  0 Config= 4f3_6s2\n' \
+                  'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  4  5  5  5  6\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3  3 -1  1 -2 -1\n' \
+                  'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6  3  2  2  4  2\n' \
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  1\n'
+elements['Hf'] =  'Iz=  72 Norb= 21 Ion=  0 Config= 5d2_6s2\n' \
+                  'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  4  4  5  5  5  5  6\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3  3 -4 -1  1 -2  2 -1\n' \
+                  'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6  6  8  2  2  4  2  2\n' \
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  1\n'
+elements['Ta'] =  'Iz=  73 Norb= 21 Ion=  0 Config= 5d3_6s2\n' \
+                  'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  4  4  5  5  5  5  6\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3  3 -4 -1  1 -2  2 -1\n' \
+                  'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6  6  8  2  2  4  3  2\n' \
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  1\n'
 elements['W'] =  'Iz=  74 Norb= 21 Ion=  0 Config= 5d4_6s2\n' \
                   'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  4  4  5  5  5  5  6\n' \
                   'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3  3 -4 -1  1 -2  2 -1\n' \
                   'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6  6  8  2  2  4  4  2\n' \
                   'Valen  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  1\n'
+elements['Re'] =  'Iz=  75 Norb= 22 Ion=  0 Config= 5d5_6s2\n' \
+                  'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  4  4  5  5  5  5  5  6\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3  3 -4 -1  1 -2  2 -3 -1\n' \
+                  'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6  6  8  2  2  4  4  1  2\n' \
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1\n'
+elements['Os'] =  'Iz=  76 Norb= 22 Ion=  0 Config= 5d6_6s2\n' \
+                  'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  4  4  5  5  5  5  5  6\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3  3 -4 -1  1 -2  2 -3 -1\n' \
+                  'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6  6  8  2  2  4  4  2  2\n' \
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1\n'
+elements['Ir'] =  'Iz=  77 Norb= 21 Ion=  0 Config= 5d9\n' \
+                  'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  4  4  5  5  5  5  5\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3  3 -4 -1  1 -2  2 -3\n' \
+                  'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6  6  8  2  2  4  4  5\n' \
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  1\n'
+elements['Pt'] =  'Iz=  78 Norb= 22 Ion=  0 Config= 5d9_6s1\n' \
+                  'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  4  4  5  5  5  5  5  6\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3  3 -4 -1  1 -2  2 -3 -1\n' \
+                  'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6  6  8  2  2  4  4  5  1\n' \
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1\n'
+elements['Au'] =  'Iz=  79 Norb= 22 Ion=  0 Config= 5d9_6s1\n' \
+                  'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  4  4  5  5  5  5  5  6\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3  3 -4 -1  1 -2  2 -3 -1\n' \
+                  'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6  6  8  2  2  4  4  6  1\n' \
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1\n'
+
 
 common_keys = [
     'dir',
