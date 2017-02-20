@@ -47,6 +47,31 @@ elements = {}
 #for key in element_keys:
 #    elements[key] = None
 
+elements['B'] =  'Iz=   5 Norb=  3 Ion=  0 Config= 2s2_2p1\n' \
+                  'n      1  2  2\n' \
+                  'Kappa -1 -1  1\n' \
+                  'Occup  2  2  1\n' \
+                  'Valen  0  1  1\n'
+elements['C'] =  'Iz=   6 Norb=  3 Ion=  0 Config= 2s2_2p2\n' \
+                  'n      1  2  2\n' \
+                  'Kappa -1 -1  1\n' \
+                  'Occup  2  2  2\n' \
+                  'Valen  0  1  1\n'
+elements['N'] =  'Iz=   7 Norb=  4 Ion=  0 Config= 2s2_2p3\n' \
+                  'n      1  2  2  2\n' \
+                  'Kappa -1 -1  1 -2\n' \
+                  'Occup  2  2  2  1\n' \
+                  'Valen  0  1  1  1\n'
+elements['O'] =  'Iz=   8 Norb=  4 Ion=  0 Config= 2s2_2p4\n' \
+                  'n      1  2  2  2\n' \
+                  'Kappa -1 -1  1 -2\n' \
+                  'Occup  2  2  2  2\n' \
+                  'Valen  0  1  1  1\n'
+elements['Mg'] =  'Iz=  12 Norb=  5 Ion=  0 Config= 3s2\n' \
+                  'n      1  2  2  2  3\n' \
+                  'Kappa -1 -1  1 -2 -1\n' \
+                  'Occup  2  2  2  4  2\n' \
+                  'Valen  0  0  0  0  1\n'
 elements['Al'] =  'Iz=  13 Norb=  6 Ion=  0 Config= 3s2_3p1\n' \
                   'n      1  2  2  2  3  3\n' \
                   'Kappa -1 -1  1 -2 -1  1\n' \
@@ -167,6 +192,16 @@ elements['Cd'] =  'Iz=  48 Norb= 15 Ion=  0 Config= 4d10_5s2\n' \
                   'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3 -1\n' \
                   'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6  2\n' \
                   'Valen  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1\n'
+elements['In'] =  'Iz=  49 Norb= 16 Ion=  0 Config= 4d10_5s25p1\n' \
+                  'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  5  5\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3 -1  1\n' \
+                  'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6  2  1\n' \
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1  1\n'
+elements['Sn'] =  'Iz=  50 Norb= 16 Ion=  0 Config= 4d10_5s25p2\n' \
+                  'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  5  5\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3 -1  1\n' \
+                  'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6  2  2\n' \
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1  1\n'
 elements['La'] =  'Iz=  57 Norb= 19 Ion=  0 Config= 5d1_6s2\n' \
                   'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  5  5  5  5  6\n' \
                   'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3 -1  1 -2  2 -1\n' \
@@ -186,17 +221,17 @@ elements['Hf'] =  'Iz=  72 Norb= 21 Ion=  0 Config= 5d2_6s2\n' \
                   'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  4  4  5  5  5  5  6\n' \
                   'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3  3 -4 -1  1 -2  2 -1\n' \
                   'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6  6  8  2  2  4  2  2\n' \
-                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  1\n'
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  1  1\n'
 elements['Ta'] =  'Iz=  73 Norb= 21 Ion=  0 Config= 5d3_6s2\n' \
                   'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  4  4  5  5  5  5  6\n' \
                   'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3  3 -4 -1  1 -2  2 -1\n' \
                   'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6  6  8  2  2  4  3  2\n' \
-                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  1\n'
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  1  1\n'
 elements['W'] =  'Iz=  74 Norb= 21 Ion=  0 Config= 5d4_6s2\n' \
                   'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  4  4  5  5  5  5  6\n' \
                   'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3  3 -4 -1  1 -2  2 -1\n' \
                   'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6  6  8  2  2  4  4  2\n' \
-                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  1\n'
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0  0  0  1  1\n'
 elements['Re'] =  'Iz=  75 Norb= 22 Ion=  0 Config= 5d5_6s2\n' \
                   'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  4  4  5  5  5  5  5  6\n' \
                   'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3  3 -4 -1  1 -2  2 -3 -1\n' \
@@ -217,10 +252,15 @@ elements['Pt'] =  'Iz=  78 Norb= 22 Ion=  0 Config= 5d9_6s1\n' \
                   'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3  3 -4 -1  1 -2  2 -3 -1\n' \
                   'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6  6  8  2  2  4  4  5  1\n' \
                   'Valen  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1\n'
-elements['Au'] =  'Iz=  79 Norb= 22 Ion=  0 Config= 5d9_6s1\n' \
+elements['Au'] =  'Iz=  79 Norb= 22 Ion=  0 Config= 5d10_6s1\n' \
                   'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  4  4  5  5  5  5  5  6\n' \
                   'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3  3 -4 -1  1 -2  2 -3 -1\n' \
                   'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6  6  8  2  2  4  4  6  1\n' \
+                  'Valen  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1\n'
+elements['Hg'] =  'Iz=  80 Norb= 22 Ion=  0 Config= 5d10_6s2\n' \
+                  'n      1  2  2  2  3  3  3  3  3  4  4  4  4  4  4  4  5  5  5  5  5  6\n' \
+                  'Kappa -1 -1  1 -2 -1  1 -2  2 -3 -1  1 -2  2 -3  3 -4 -1  1 -2  2 -3 -1\n' \
+                  'Occup  2  2  2  4  2  2  4  4  6  2  2  4  4  6  6  8  2  2  4  4  6  2\n' \
                   'Valen  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  1  1\n'
 
 
@@ -237,6 +277,19 @@ common_keys = [
 ]
 
 bmdl_keys = [
+]
+
+
+
+kstr_keys = [
+    'nl',
+    'nlh',
+    'nlw',
+    'nder',
+    'nprn',
+    'dmax',
+    'rwats'
+    'kw2'
 ]
 
 kgrn_keys = [
@@ -320,7 +373,11 @@ class EMTO(Calculator):
         for key in kgrn_keys:
             self.kgrn_params[key] = None
 
+        self.energy_lda = 0
         self.energy_pbe = 0
+        self.energy_p07 = 0
+        self.energy_am5 = 0
+        self.energy_lag = 0
 
         self.common_params['dir'] = 'work'
     #    self.common_params['nq'] = 1
@@ -332,6 +389,16 @@ class EMTO(Calculator):
         self.common_params['amax'] = 4.50
         self.common_params['bmax'] = 4.50
         self.common_params['nghbp'] = 13
+
+        self.kstr_params['nl'] = 4
+        self.kstr_params['nlh'] = 11
+        self.kstr_params['nlw'] = 9
+        self.kstr_params['nder'] = 6
+        self.kstr_params['itrans'] = 3
+        self.kstr_params['nprn'] = 0
+        self.kstr_params['dmax'] = 1.70
+        self.kstr_params['rwats'] = 0.10
+        self.kstr_params['kw2'] = 0.0
 
         self.kgrn_params['strt'] = 'A'
         self.kgrn_params['msgl'] = 0
@@ -401,6 +468,8 @@ class EMTO(Calculator):
                 self.common_params[key] = kwargs[key]
             if key in self.bmdl_params:
                 self.bmdl_params[key] = kwargs[key]
+            if key in self.kstr_params:
+                self.kstr_params[key] = kwargs[key]
             if key in self.kgrn_params:
                 self.kgrn_params[key] = kwargs[key]
 
@@ -425,6 +494,9 @@ class EMTO(Calculator):
     def get_potential_energy(self, atoms, force_consistent=False):
         self.update(atoms)
         return self.energy_pbe
+
+    def get_potential_energies():
+        return [self.energy_lda, self.energy_pbe, self.energy_p07, self.energy_am5, self.energy_lag]
 
     def update(self, atoms):
         self.calculate(atoms)
@@ -492,33 +564,39 @@ class EMTO(Calculator):
         bmdl.write('IPRIM.={:2d} '.format(self.common_params['iprim']))
         bmdl.write('NQR2..={:2d}\n'.format(self.common_params['nqr2']))
 
+        cell = atoms.get_cell()
+
+        a = np.linalg.norm(cell[0])
+        b = np.linalg.norm(cell[1])
+        c = np.linalg.norm(cell[2])
+
+        bmdl.write('A........={:10.7f} '.format(a / a))
+        bmdl.write('B.......={:10.7f} '.format(b / a))
+        bmdl.write('C.......={:10.7f}\n'.format(c / a))
+
         if self.common_params['iprim']==0:
-            cell = atoms.get_cell()
 
-            a = np.linalg.norm(cell[0])
-            b = np.linalg.norm(cell[1])
-            c = np.linalg.norm(cell[2])
-
-            bmdl.write('A........={:10.3f} '.format(a/a))
-            bmdl.write('B.......={:10.3f} '.format(b/a))
-            bmdl.write('C.......={:10.3f}\n'.format(c/a))
-
-            if self.common_params['lat']==2: # fcc
-                l = cell[1][0]*2
-            elif self.common_params['lat']==3: # bcc
-                l = cell[0][0]*2
+            if len(atoms) == 1 : #primitive
+                l = cell[0][1]*2
             else:
                 l = cell[0][0]
 
+       #     if self.common_params['lat']==2: # fcc
+       #         l = cell[1][0]*2
+       #     elif self.common_params['lat']==3: # bcc
+       #         l = cell[0][0]*2
+       #     else:
+       #         l = cell[0][0]
+
             cell = atoms.get_cell().copy()/l
             bmdl.write('BSX......={:10.7f} '.format(cell[0][0]))
-            bmdl.write('BSY.....={:10.7f} '.format(cell[0][1]))
-            bmdl.write('BSZ.....={:10.7f}\n'.format(cell[0][2]))
-            bmdl.write('BSX......={:10.7f} '.format(cell[1][0]))
+            bmdl.write('BSY.....={:10.7f} '.format(cell[1][0]))
+            bmdl.write('BSZ.....={:10.7f}\n'.format(cell[2][0]))
+            bmdl.write('BSX......={:10.7f} '.format(cell[0][1]))
             bmdl.write('BSY.....={:10.7f} '.format(cell[1][1]))
-            bmdl.write('BSZ.....={:10.7f}\n'.format(cell[1][2]))
-            bmdl.write('BSX......={:10.7f} '.format(cell[2][0]))
-            bmdl.write('BSY.....={:10.7f} '.format(cell[2][1]))
+            bmdl.write('BSZ.....={:10.7f}\n'.format(cell[2][1]))
+            bmdl.write('BSX......={:10.7f} '.format(cell[0][2]))
+            bmdl.write('BSY.....={:10.7f} '.format(cell[1][2]))
             bmdl.write('BSZ.....={:10.7f}\n'.format(cell[2][2]))
 
             for atom in atoms:
@@ -526,8 +604,7 @@ class EMTO(Calculator):
                 bmdl.write('QY......={:10.7f} '.format(atom.position[1]/a))
                 bmdl.write('QZ......={:10.7f}\n'.format(atom.position[2]/a))
         else:
-            bmdl.write('A........=     1.000 B.......=     1.000 C.......=     1.000\n')
-            bmdl.write('ALFA.....=      90.0 BETA....=      90.0 GAMMA...=      90.0\n')
+            bmdl.write('ALPHA....=      90.0 BETA....=      90.0 GAMMA...=      90.0\n')
             bmdl.write('QX(1)....=       0.0 QY(1)...=       0.0 QZ(1)...=       0.0\n')
 
     def write_kstr(self, atoms):
@@ -537,8 +614,17 @@ class EMTO(Calculator):
         kstr.write('DIR001=./\n')
         kstr.write('DIR006=./\n')
         kstr.write('Slope matrices, fcc (spdf), (kappa*w)^2= 0.0\n')
-        kstr.write('NL.....= 4 NLH...=11 NLW...= 9 NDER..= 6 ITRANS= 3 NPRN..= 0\n')
-        kstr.write('(K*W)^2..=  0.000000 DMAX....=    1.7000 RWATS...=      0.10\n')
+
+        kstr.write('NL.....={:2} '.format(self.kstr_params['nl']))
+        kstr.write('NLH...={:2} '.format(self.kstr_params['nlh']))
+        kstr.write('NLW...={:2} '.format(self.kstr_params['nlw']))
+        kstr.write('NDER..={:2} '.format(self.kstr_params['nder']))
+        kstr.write('ITRANS={:2} '.format(self.kstr_params['itrans']))
+        kstr.write('NPRN..={:2}\n'.format(self.kstr_params['nprn']))
+
+        kstr.write('(K*W)^2..={:10.7f} '.format(self.kstr_params['kw2']))
+        kstr.write('DMAX....={:10.7f} '.format(self.kstr_params['dmax']))
+        kstr.write('RWATS...={:10.7f}\n'.format(self.kstr_params['rwats']))
 
         kstr.write('NQ....={:3d} '.format(atoms.get_number_of_atoms()))
         kstr.write('LAT...={:2d} '.format(self.common_params['lat']))
@@ -546,33 +632,39 @@ class EMTO(Calculator):
         kstr.write('NGHBP.={:2d} '.format(self.common_params['nghbp']))
         kstr.write('NQR2..={:2d}\n'.format(self.common_params['nqr2']))
 
+        cell = atoms.get_cell()
+
+        a = np.linalg.norm(cell[0])
+        b = np.linalg.norm(cell[1])
+        c = np.linalg.norm(cell[2])
+
+        kstr.write('A........={:10.7f} '.format(a / a))
+        kstr.write('B.......={:10.7f} '.format(b / a))
+        kstr.write('C.......={:10.7f}\n'.format(c / a))
+
         if self.common_params['iprim']==0:
-            cell = atoms.get_cell()
 
-            a = np.linalg.norm(cell[0])
-            b = np.linalg.norm(cell[1])
-            c = np.linalg.norm(cell[2])
-
-            kstr.write('A........={:10.3f} '.format(a / a))
-            kstr.write('B.......={:10.3f} '.format(b / a))
-            kstr.write('C.......={:10.3f}\n'.format(c / a))
-
-            if self.common_params['lat'] == 2:  # fcc
-                l = cell[1][0] * 2
-            elif self.common_params['lat'] == 3:  # bcc
-                l = cell[0][0] * 2
+            if len(atoms) == 1:  # primitive
+                l = cell[0][1] * 2
             else:
                 l = cell[0][0]
 
+                #     if self.common_params['lat']==2: # fcc
+                #         l = cell[1][0]*2
+                #     elif self.common_params['lat']==3: # bcc
+                #         l = cell[0][0]*2
+                #     else:
+                #         l = cell[0][0]
+
             cell = atoms.get_cell().copy() / l
             kstr.write('BSX......={:10.7f} '.format(cell[0][0]))
-            kstr.write('BSY.....={:10.7f} '.format(cell[0][1]))
-            kstr.write('BSZ.....={:10.7f}\n'.format(cell[0][2]))
-            kstr.write('BSX......={:10.7f} '.format(cell[1][0]))
+            kstr.write('BSY.....={:10.7f} '.format(cell[1][0]))
+            kstr.write('BSZ.....={:10.7f}\n'.format(cell[2][0]))
+            kstr.write('BSX......={:10.7f} '.format(cell[0][1]))
             kstr.write('BSY.....={:10.7f} '.format(cell[1][1]))
-            kstr.write('BSZ.....={:10.7f}\n'.format(cell[1][2]))
-            kstr.write('BSX......={:10.7f} '.format(cell[2][0]))
-            kstr.write('BSY.....={:10.7f} '.format(cell[2][1]))
+            kstr.write('BSZ.....={:10.7f}\n'.format(cell[2][1]))
+            kstr.write('BSX......={:10.7f} '.format(cell[0][2]))
+            kstr.write('BSY.....={:10.7f} '.format(cell[1][2]))
             kstr.write('BSZ.....={:10.7f}\n'.format(cell[2][2]))
 
             for atom in atoms:
@@ -580,12 +672,15 @@ class EMTO(Calculator):
                 kstr.write('QY......={:10.7f} '.format(atom.position[1]/a))
                 kstr.write('QZ......={:10.7f}\n'.format(atom.position[2]/a))
         else:
-            kstr.write('A........=     1.000 B.......=     1.000 C.......=     1.000\n')
-            kstr.write('ALFA.....=      90.0 BETA....=      90.0 GAMMA...=      90.0\n')
-        #    kstr.write('QX(1)....=       0.0 QY(1)...=       0.0 QZ(1)...=       0.0\n')
+        #    kstr.write('A........=     1.000 B.......=     1.000 C.......=     1.000\n')
+            kstr.write('ALPHA....=      90.0 BETA....=      90.0 GAMMA...=      90.0\n')
+            kstr.write('QX(1)....=       0.0 QY(1)...=       0.0 QZ(1)...=       0.0\n')
 
         for atom in atoms:
-            kstr.write('a/w(IQ)..= 0.70 0.70 0.70 0.70\n')
+            if atom.symbol == 'C':
+                kstr.write('a/w(IQ)..= 0.60 0.60 0.60 0.60\n')
+            else :
+                kstr.write('a/w(IQ)..= 0.70 0.70 0.70 0.70\n')
 
         kstr.write('LAMDA....={:10.4f} '.format(self.common_params['lamda']))
         kstr.write('AMAX....={:10.4f} '.format(self.common_params['amax']))
@@ -764,6 +859,14 @@ class EMTO(Calculator):
         for line in lines:
             if line.rfind('TOT-PBE') > -1:
                 self.energy_pbe = float(line.split('(Ry)')[0].split('TOT-PBE')[1].strip())*13.6058
+            if line.rfind('TOT-LDA') > -1:
+                self.energy_lda = float(line.split('(Ry)')[0].split('TOT-LDA')[1].strip())*13.6058
+            if line.rfind('TOT-P07') > -1:
+                self.energy_p07 = float(line.split('(Ry)')[0].split('TOT-P07')[1].strip())*13.6058
+            if line.rfind('TOT-AM5') > -1:
+                self.energy_am5 = float(line.split('(Ry)')[0].split('TOT-AM5')[1].strip())*13.6058
+            if line.rfind('TOT-LAG') > -1:
+                self.energy_lag = float(line.split('(Ry)')[0].split('TOT-LAG')[1].strip()) * 13.6058
             #    self.energy_pbe = float(line.split(' ')[8].strip())*13.6058
             #    self.energy_pbe = self.energy_pbe*13.6058 # Ry -> eV conversion
 

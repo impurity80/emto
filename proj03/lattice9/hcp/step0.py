@@ -23,11 +23,11 @@ curr_dir = os.getcwd()
 os.system('mkdir eos')
 os.system('mkdir result')
 
-COMP_OPTIONS = np.linspace(0.0, 0.1, 11)
+COMP_OPTIONS = np.linspace(0.01, 0.1, 10)
 ELE_OPTIONS = ['Al','Si','P','S',
-               'Sc','Ti','V','Cr','Mn','Co','Ni','Cu','Zn',
+               'Sc','Ti','V','Cr',,'Co','Ni','Cu','Zn',
                'Y','Zr','Nb','Mo','Tc','Ru','Rh','Pd','Ag','Cd',
-               'Hf','Ta','W','Re','Os','Ir','Pt','Au','Hg']
+               'Hf','Ta','W','Re','Os','Ir','Pt','Au','Hg','Ce']
 
 ele = ELE_OPTIONS[rank]
 
@@ -46,7 +46,7 @@ for comp in COMP_OPTIONS:
     volumes = []
     energies = []
 
-    mn = 0.2
+    mn = 0.17
     fe = 1.0-mn-comp
 
     for opt in OPTIONS:
@@ -90,10 +90,10 @@ for comp in COMP_OPTIONS:
             temp_volumes.append(v)
             temp_energies.append(e)
 
-    if len(temp_volumes) > 1:
+    if len(temp_volumes) > 2:
         eos = EquationOfState(temp_volumes, temp_energies)
         v0, e0, B = eos.fit()
-        eos.plot('eos/{1}-{0}.png'.format(id, name))
+        eos.plot('eos/{0}-{1}-{2}.png'.format(name,ele,comp))
 
         save(result, '{0} {1} {2} {3}'.format(v0, e0, B, (4.0 * v0) ** (1.0 / 3.0)))
 
